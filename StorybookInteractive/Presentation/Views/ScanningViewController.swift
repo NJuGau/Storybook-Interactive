@@ -44,8 +44,6 @@ class ScanningViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
-        
         // Add subviews
         view.addSubview(cameraView)
         view.addSubview(nameLabel)
@@ -53,9 +51,9 @@ class ScanningViewController: UIViewController {
         
         // Setup constraints for cameraView
         NSLayoutConstraint.activate([
-            cameraView.topAnchor.constraint(equalTo: view.topAnchor),
-            cameraView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            cameraView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            cameraView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cameraView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             cameraView.heightAnchor.constraint(equalToConstant: 500)
         ])
         
