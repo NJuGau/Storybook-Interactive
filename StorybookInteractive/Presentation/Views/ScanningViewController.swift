@@ -130,7 +130,7 @@ class ScanningViewController: UIViewController {
     private func setupConstraint() {
         // Setup constraints for cameraView
         NSLayoutConstraint.activate([
-            cameraView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            cameraView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150), //change constant to 0 for phone
             cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             cameraView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             cameraView.heightAnchor.constraint(equalToConstant: 500)
