@@ -1,0 +1,191 @@
+[
+    {
+        "id": 1,
+        "title": "Buku 1",
+        "listStory": [
+            {
+                "id": 1,
+                "listTextStory": [
+                    {
+                        "id": 1,
+                        "text": "Di suatu pagi yang cerah, kicau burung terdengar riang di udara. ",
+                        "padding": {
+                            "top": 1650,
+                            "bottom": 0,
+                            "left": 300,
+                            "right": 0
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "text": "Hiduplah seorang anak bernama Jose. Setiap pagi Jose suka berjalan-jalan menyusuri danau.",
+                        "padding": {
+                            "top": 800,
+                            "bottom": 0,
+                            "left": 30,
+                            "right": 0
+                        }
+                    }
+                ],
+                "backgroundImage": ["BackgroundBook1Page1", "BackgroundBook1Page1WithCharacter"],
+                "backgroundSound": [],
+                "scanCardClassifier": "",
+                "listInteractiveObject": [
+                    {
+                        "id": 1,
+                        "objectImage": "Bird1",
+                        "objectSound": "",
+                        "padding": {
+                          "top": 120,
+                          "bottom": 1470,
+                          "left": 450,
+                          "right": 1796
+                        },
+                        "size": {
+                            "width": 150,
+                            "height": 136
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "objectImage": "Bird2",
+                        "objectSound": "",
+                        "padding": {
+                          "top": 70,
+                          "bottom": 1470,
+                          "left": 2000,
+                          "right": 404
+                        },
+                        "size": {
+                            "width": 163,
+                            "height": 151
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "objectImage": "Fox",
+                        "objectSound": "",
+                        "padding": {
+                          "top": 750,
+                          "bottom": 620,
+                          "left": 600,
+                          "right": 1388
+                        },
+                        "size": {
+                            "width": 478,
+                            "height": 485
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "objectImage": "Cat",
+                        "objectSound": "",
+                        "padding": {
+                            "top": 950,
+                            "bottom": 574,
+                            "left": 1550,
+                            "right": 416
+                        },
+                        "size": {
+                            "width": 467,
+                            "height": 346
+                        }
+                    }
+
+                ]
+            },
+            {
+                "id": 2,
+                "listTextStory": [
+                    {
+                        "id": 1,
+                        "text": "Di suatu pagi yang cerah, kicau burung terdengar riang di udara. ",
+                        "padding": {
+                            "top": 1650,
+                            "bottom": 0,
+                            "left": 300,
+                            "right": 0
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "text": "Hiduplah seorang anak bernama Jose. Setiap pagi Jose suka berjalan-jalan menyusuri danau.",
+                        "padding": {
+                            "top": 1000,
+                            "bottom": 0,
+                            "left": 50,
+                            "right": 0
+                        }
+                    }
+                ],
+                "backgroundImage": ["BackgroundBook1Page1", "BackgroundBook1Page1WithCharacter"],
+                "backgroundSound": [],
+                "scanCardClassifier": "",
+                "listInteractiveObject": [
+                    {
+                        "id": 1,
+                        "objectImage": "Bird1",
+                        "objectSound": "",
+                        "padding": {
+                          "top": 120,
+                          "bottom": 1470,
+                          "left": 450,
+                          "right": 1796
+                        },
+                        "size": {
+                            "width": 150,
+                            "height": 136
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "objectImage": "Bird2",
+                        "objectSound": "",
+                        "padding": {
+                          "top": 70,
+                          "bottom": 1470,
+                          "left": 2000,
+                          "right": 404
+                        },
+                        "size": {
+                            "width": 163,
+                            "height": 151
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "objectImage": "Fox",
+                        "objectSound": "",
+                        "padding": {
+                          "top": 750,
+                          "bottom": 620,
+                          "left": 600,
+                          "right": 1388
+                        },
+                        "size": {
+                            "width": 478,
+                            "height": 485
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "objectImage": "Cat",
+                        "objectSound": "",
+                        "padding": {
+                            "top": 950,
+                            "bottom": 574,
+                            "left": 1550,
+                            "right": 416
+                        },
+                        "size": {
+                            "width": 467,
+                            "height": 346
+                        }
+                    }
+
+                ]
+            }
+        ]
+    }
+]
+
