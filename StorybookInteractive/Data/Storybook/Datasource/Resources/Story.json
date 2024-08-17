@@ -8,83 +8,181 @@
                 "listTextStory": [
                     {
                         "id": 1,
-                        "text": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                        "position": {
-                            "xPosition": 10.00,
-                            "yPosition": 300.00,
-                            "width": 600.00,
-                            "height": 600.00
+                        "text": "Di suatu pagi yang cerah, kicau burung terdengar riang di udara. ",
+                        "padding": {
+                            "top": 1650,
+                            "bottom": 0,
+                            "left": 300,
+                            "right": 0
                         }
                     },
                     {
                         "id": 2,
-                        "text": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                        "position": {
-                            "xPosition": 10.00,
-                            "yPosition": 600.00,
-                            "width": 2000.00,
-                            "height": 200.00
+                        "text": "Hiduplah seorang anak bernama Jose. Setiap pagi Jose suka berjalan-jalan menyusuri danau.",
+                        "padding": {
+                            "top": 800,
+                            "bottom": 0,
+                            "left": 30,
+                            "right": 0
                         }
                     }
-
                 ],
-                "backgroundImage": "backgroundTestPage1",
-                "backgroundSound": "",
+                "backgroundImage": ["BackgroundBook1Page1", "BackgroundBook1Page1WithCharacter"],
+                "backgroundSound": [],
                 "scanCardClassifier": "",
                 "listInteractiveObject": [
                     {
                         "id": 1,
-                        "objectImage": "cat",
+                        "objectImage": "Bird1",
                         "objectSound": "",
-                        "position": {
-                            "xPosition": 50.00,
-                            "yPosition": 50.00,
-                            "width": 100.00,
-                            "height": 100.00
+                        "padding": {
+                          "top": 120,
+                          "bottom": 1470,
+                          "left": 450,
+                          "right": 1796
+                        },
+                        "size": {
+                            "width": 150,
+                            "height": 136
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "objectImage": "Bird2",
+                        "objectSound": "",
+                        "padding": {
+                          "top": 70,
+                          "bottom": 1470,
+                          "left": 2000,
+                          "right": 404
+                        },
+                        "size": {
+                            "width": 163,
+                            "height": 151
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "objectImage": "Fox",
+                        "objectSound": "",
+                        "padding": {
+                          "top": 750,
+                          "bottom": 620,
+                          "left": 600,
+                          "right": 1388
+                        },
+                        "size": {
+                            "width": 478,
+                            "height": 485
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "objectImage": "Cat",
+                        "objectSound": "",
+                        "padding": {
+                            "top": 950,
+                            "bottom": 574,
+                            "left": 1550,
+                            "right": 416
+                        },
+                        "size": {
+                            "width": 467,
+                            "height": 346
                         }
                     }
+
                 ]
             },
             {
-                "id": 1,
+                "id": 2,
                 "listTextStory": [
                     {
                         "id": 1,
-                        "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                        "position": {
-                            "xPosition": 10.00,
-                            "yPosition": 300.00,
-                            "width": 1000.00,
-                            "height": 200.00
+                        "text": "Di suatu pagi yang cerah, kicau burung terdengar riang di udara. ",
+                        "padding": {
+                            "top": 1650,
+                            "bottom": 0,
+                            "left": 300,
+                            "right": 0
                         }
                     },
                     {
                         "id": 2,
-                        "text": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                        "position": {
-                            "xPosition": 10.00,
-                            "yPosition": 600.00,
-                            "width": 2000.00,
-                            "height": 200.00
+                        "text": "Hiduplah seorang anak bernama Jose. Setiap pagi Jose suka berjalan-jalan menyusuri danau.",
+                        "padding": {
+                            "top": 1000,
+                            "bottom": 0,
+                            "left": 50,
+                            "right": 0
                         }
                     }
-
                 ],
-                "backgroundImage": "backgroundTestPage1",
-                "backgroundSound": "",
+                "backgroundImage": ["BackgroundBook1Page1", "BackgroundBook1Page1WithCharacter"],
+                "backgroundSound": [],
                 "scanCardClassifier": "",
                 "listInteractiveObject": [
                     {
                         "id": 1,
-                        "objectImage": "cat",
+                        "objectImage": "Bird1",
                         "objectSound": "",
-                        "position": {
-                            "xPosition": 50.00,
-                            "yPosition": 50.00,
-                            "width": 100.00,
-                            "height": 100.00
+                        "padding": {
+                          "top": 120,
+                          "bottom": 1470,
+                          "left": 450,
+                          "right": 1796
+                        },
+                        "size": {
+                            "width": 150,
+                            "height": 136
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "objectImage": "Bird2",
+                        "objectSound": "",
+                        "padding": {
+                          "top": 70,
+                          "bottom": 1470,
+                          "left": 2000,
+                          "right": 404
+                        },
+                        "size": {
+                            "width": 163,
+                            "height": 151
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "objectImage": "Fox",
+                        "objectSound": "",
+                        "padding": {
+                          "top": 750,
+                          "bottom": 620,
+                          "left": 600,
+                          "right": 1388
+                        },
+                        "size": {
+                            "width": 478,
+                            "height": 485
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "objectImage": "Cat",
+                        "objectSound": "",
+                        "padding": {
+                            "top": 950,
+                            "bottom": 574,
+                            "left": 1550,
+                            "right": 416
+                        },
+                        "size": {
+                            "width": 467,
+                            "height": 346
                         }
                     }
+
                 ]
             }
         ]

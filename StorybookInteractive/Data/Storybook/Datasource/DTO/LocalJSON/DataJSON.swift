@@ -16,8 +16,8 @@ struct Book: Codable {
 struct StoryPage: Codable {
     var id: Int
     var listTextStory: [TextStory]
-    var backgroundImage: String
-    var backgroundSound: String
+    var backgroundImage: [String]
+    var backgroundSound: [String]
     var scanCardClassifier: String
     var listInteractiveObject: [InteractiveObject]
 }
@@ -25,12 +25,10 @@ struct StoryPage: Codable {
 struct TextStory: Codable {
     var id: Int
     var text: String
-    var position: Position
+    var padding: Padding
 }
 
-struct Position: Codable {
-    var xPosition: Double
-    var yPosition: Double
+struct Size: Codable {
     var width: Double
     var height: Double
 }
@@ -39,5 +37,13 @@ struct InteractiveObject: Codable {
     var id: Int
     var objectImage: String
     var objectSound: String
-    var position: Position
+    var padding: Padding
+    var size: Size
+}
+
+struct Padding: Codable {
+    var top: Double
+    var bottom: Double
+    var left: Double
+    var right: Double
 }

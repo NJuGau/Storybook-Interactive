@@ -14,10 +14,10 @@ internal final class StorybookViewModel {
     private var storyId: Int
     private var textStoryId: Int
     
-    init(bookId: Int, textStoryId: Int, useCase: StorybookUsecase){
+    init(bookId: Int, storyId: Int, textStoryId: Int, useCase: StorybookUsecase){
         self.bookId = bookId
-        self.storyId = 1
-        self.textStoryId = 1
+        self.storyId = storyId
+        self.textStoryId = textStoryId
         self.useCase = useCase
     }
     
