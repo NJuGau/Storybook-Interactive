@@ -1,0 +1,93 @@
+[
+    {
+        "id": 1,
+        "title": "Buku 1",
+        "listStory": [
+            {
+                "id": 1,
+                "listTextStory": [
+                    {
+                        "id": 1,
+                        "text": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        "position": {
+                            "xPosition": 10.00,
+                            "yPosition": 300.00,
+                            "width": 600.00,
+                            "height": 600.00
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "text": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        "position": {
+                            "xPosition": 10.00,
+                            "yPosition": 600.00,
+                            "width": 2000.00,
+                            "height": 200.00
+                        }
+                    }
+
+                ],
+                "backgroundImage": "backgroundTestPage1",
+                "backgroundSound": "",
+                "scanCardClassifier": "",
+                "listInteractiveObject": [
+                    {
+                        "id": 1,
+                        "objectImage": "cat",
+                        "objectSound": "",
+                        "position": {
+                            "xPosition": 50.00,
+                            "yPosition": 50.00,
+                            "width": 100.00,
+                            "height": 100.00
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "listTextStory": [
+                    {
+                        "id": 1,
+                        "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                        "position": {
+                            "xPosition": 10.00,
+                            "yPosition": 300.00,
+                            "width": 1000.00,
+                            "height": 200.00
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "text": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        "position": {
+                            "xPosition": 10.00,
+                            "yPosition": 600.00,
+                            "width": 2000.00,
+                            "height": 200.00
+                        }
+                    }
+
+                ],
+                "backgroundImage": "backgroundTestPage1",
+                "backgroundSound": "",
+                "scanCardClassifier": "",
+                "listInteractiveObject": [
+                    {
+                        "id": 1,
+                        "objectImage": "cat",
+                        "objectSound": "",
+                        "position": {
+                            "xPosition": 50.00,
+                            "yPosition": 50.00,
+                            "width": 100.00,
+                            "height": 100.00
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]
+
