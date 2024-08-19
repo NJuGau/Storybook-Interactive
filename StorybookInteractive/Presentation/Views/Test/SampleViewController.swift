@@ -7,15 +7,22 @@
 
 import UIKit
 
-class SampleViewController: UIViewController, ScanningDelegate {
+class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate {
+    
     
     var scanResult: String?
     var scanningView: ScanningViewController?
+    var repeatView: RepeatViewController?
     
     func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String) {
         print("identifier: \(identifier)")
         scanResult = identifier
         removeScanningView()
+        addRepeatView()
+    }
+    
+    func didPressCompleteDelegate(_ controller: RepeatViewController) {
+        removeRepeatView()
     }
     
     
@@ -24,15 +31,28 @@ class SampleViewController: UIViewController, ScanningDelegate {
 
         view.backgroundColor = .green
         
-        scanningView = ScanningViewController(promptText: "Di suatu pagi yang cerah...")
+        scanningView = ScanningViewController(promptText: "Cari Burung yuk!")
         scanningView?.delegate = self
         view.addSubview(scanningView?.view ?? UIView())
     }
 
     func removeScanningView() {
         DispatchQueue.main.async { [weak self] in
-                self?.scanningView?.view.removeFromSuperview() // Remove the view
-                self?.scanningView = nil // Set the reference to nil
-            }
+            self?.scanningView?.view.removeFromSuperview()
+            self?.scanningView = nil
+        }
+    }
+    
+    func addRepeatView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.repeatView = RepeatViewController(cardImageName: "BirdCard")
+            self?.repeatView?.delegate = self
+            self?.view.addSubview(self?.repeatView?.view ?? UIView())
+        }
+    }
+    
+    func removeRepeatView() {
+        repeatView?.view.removeFromSuperview()
+        repeatView = nil
     }
 }

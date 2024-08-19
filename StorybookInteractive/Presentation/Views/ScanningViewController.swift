@@ -19,8 +19,6 @@ protocol ScanningDelegate {
 class ScanningViewController: UIViewController {
     
     var delegate: ScanningDelegate?
-    
-    
     var scanState: ScanState = .initial {
         didSet {
             print("Did Set")
@@ -32,7 +30,7 @@ class ScanningViewController: UIViewController {
     private let cameraView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white // Set a background color to see it more clearly
+        view.backgroundColor = .white
         return view
     }()
     
@@ -40,7 +38,7 @@ class ScanningViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Name"
-        label.textColor = .black // Ensure the text is visible
+        label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
@@ -75,7 +73,7 @@ class ScanningViewController: UIViewController {
         return label
     }()
     
-    private let classificationModel = try! ClassifyCardModel(configuration: .init())
+    private let classificationModel = try! PhysicalCardClassifier(configuration: .init())
         
     var videoHandler: VideoHandler!
         
