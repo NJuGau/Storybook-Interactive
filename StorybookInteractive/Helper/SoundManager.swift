@@ -10,9 +10,14 @@ import AVFoundation
 import Foundation
 import UIKit
 
-class SoundManager {
+protocol SoundDelegate: NSObject, AVAudioPlayerDelegate {
+    func audioDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool)
+}
+
+class SoundManager: NSObject, AVAudioPlayerDelegate {
     
     public static var shared = SoundManager()
+    var delegate: SoundDelegate?
     
     private var backgroundSoundPlayer: AVAudioPlayer?
     private var dialogueSoundPlayer: AVAudioPlayer?
@@ -59,6 +64,7 @@ class SoundManager {
                 
                 dialogueSoundPlayer?.numberOfLoops = 1
                 dialogueSoundPlayer?.volume = dialogueVolume
+                dialogueSoundPlayer?.delegate = self
             } catch {
                 print("Error initializing background sound: \(error.localizedDescription)")
             }
@@ -78,5 +84,11 @@ class SoundManager {
     //function to stop dialogue / interactive sound
     func stopDialogueSound() {
         dialogueSoundPlayer?.stop()
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if player == dialogueSoundPlayer {
+            delegate?.audioDidFinishPlaying(player, successfully: flag)
+        }
     }
 }
