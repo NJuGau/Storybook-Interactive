@@ -12,6 +12,8 @@ class SampleViewController: UIViewController, ScanningDelegate {
     var scanResult: String?
     var scanningView: ScanningViewController?
     
+    let soundManager = SoundManager.shared
+    
     func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String) {
         print("identifier: \(identifier)")
         scanResult = identifier
@@ -27,6 +29,11 @@ class SampleViewController: UIViewController, ScanningDelegate {
         scanningView = ScanningViewController(promptText: "Di suatu pagi yang cerah...")
         scanningView?.delegate = self
         view.addSubview(scanningView?.view ?? UIView())
+        
+        soundManager.setupBackgroundSound(soundName: "SampleBackground")
+        soundManager.setupDialogueSound(soundName: "SampleForeground")
+        soundManager.playBackgroundSound()
+        soundManager.playDialogueSound()
     }
 
     func removeScanningView() {
