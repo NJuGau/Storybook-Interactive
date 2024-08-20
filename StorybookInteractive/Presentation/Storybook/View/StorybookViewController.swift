@@ -59,7 +59,6 @@ class StorybookViewController: UIViewController {
         
         // SCAN FLASH CARD
 
-
     }
     
     private func setupViewModel() {
@@ -146,6 +145,18 @@ class StorybookViewController: UIViewController {
             // BIRD 2
             startLottie(x: 780, y: 45)
 //                stopLottie()
+            
+            //Setup button next page
+            let buttonNextPage = NextButtonComponent()
+            
+            view.addSubview(buttonNextPage)
+            
+            //TODO: Change constant to make it responsive
+            NSLayoutConstraint.activate([
+                buttonNextPage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+                buttonNextPage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            ])
+            //TODO: Implement touch gesture
         }
     }
     
