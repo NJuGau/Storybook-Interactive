@@ -166,7 +166,6 @@ class ScanningViewController: UIViewController {
         
         override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
-            videoHandler.stop()
         }
         
         func setupModel(){
@@ -225,7 +224,7 @@ extension ScanningViewController {
                 return
             }
             if result.confidence > 0.90 && result.identifier != "NonClassified" {
-                print("hit")
+                videoHandler.stop()
                 delegate?.didScanCompleteDelegate(self, didCaptureResult: result.identifier)
             }
             showResults(objectLabel: result.identifier, confidence: result.confidence)
