@@ -73,7 +73,7 @@ class ScanningViewController: UIViewController {
         return label
     }()
     
-    private let classificationModel = try! PhysicalCardClassifier(configuration: .init())
+    private let classificationModel = try! AllCardClassifier(configuration: .init())
         
     var videoHandler: VideoHandler!
         
