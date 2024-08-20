@@ -33,14 +33,23 @@ class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate {
 
         view.backgroundColor = .green
         
-        scanningView = ScanningViewController(promptText: "Cari Burung yuk!")
-        scanningView?.delegate = self
-        view.addSubview(scanningView?.view ?? UIView())
+//        scanningView = ScanningViewController(promptText: "Cari Burung yuk!")
+//        scanningView?.delegate = self
+//        view.addSubview(scanningView?.view ?? UIView())
+//        
+//        soundManager.setupBackgroundSound(soundName: "SampleBackground")
+//        soundManager.setupDialogueSound(soundName: "SampleForeground")
+//        soundManager.playBackgroundSound()
+//        soundManager.playDialogueSound()
         
-        soundManager.setupBackgroundSound(soundName: "SampleBackground")
-        soundManager.setupDialogueSound(soundName: "SampleForeground")
-        soundManager.playBackgroundSound()
-        soundManager.playDialogueSound()
+        let buttonNextPage = NextButtonComponent()
+        
+        view.addSubview(buttonNextPage)
+        
+        NSLayoutConstraint.activate([
+            buttonNextPage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            buttonNextPage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+        ])
     }
 
     func removeScanningView() {
