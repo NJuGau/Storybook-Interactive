@@ -14,6 +14,8 @@ class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate {
     var scanningView: ScanningViewController?
     var repeatView: RepeatViewController?
     
+    let soundManager = SoundManager.shared
+    
     func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String) {
         print("identifier: \(identifier)")
         scanResult = identifier
@@ -34,6 +36,11 @@ class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate {
         scanningView = ScanningViewController(promptText: "Cari Burung yuk!")
         scanningView?.delegate = self
         view.addSubview(scanningView?.view ?? UIView())
+        
+        soundManager.setupBackgroundSound(soundName: "SampleBackground")
+        soundManager.setupDialogueSound(soundName: "SampleForeground")
+        soundManager.playBackgroundSound()
+        soundManager.playDialogueSound()
     }
 
     func removeScanningView() {
