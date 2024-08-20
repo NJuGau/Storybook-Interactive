@@ -16,7 +16,10 @@ class SoundManager {
     
     private var backgroundSoundPlayer: AVAudioPlayer?
     private var dialogueSoundPlayer: AVAudioPlayer?
-    private var soundEffectPlayer: AVAudioPlayer? // MARK: for sound effect, I'll add corresponding function if needed
+    
+    //adjust volume here
+    private var backgroundVolume: Float = 0.5
+    private var dialogueVolume: Float = 0.8
     
     //function to setup background sound
     func setupBackgroundSound(soundName: String) {
@@ -26,7 +29,7 @@ class SoundManager {
                 backgroundSoundPlayer = try AVAudioPlayer(data: soundAsset.data)
                 
                 backgroundSoundPlayer?.numberOfLoops = -1
-                backgroundSoundPlayer?.volume = 0.5
+                backgroundSoundPlayer?.volume = backgroundVolume
             } catch {
                 print("Error initializing background sound: \(error.localizedDescription)")
             }
@@ -55,7 +58,7 @@ class SoundManager {
                 dialogueSoundPlayer = try AVAudioPlayer(data: soundAsset.data)
                 
                 dialogueSoundPlayer?.numberOfLoops = 1
-                dialogueSoundPlayer?.volume = 0.8
+                dialogueSoundPlayer?.volume = dialogueVolume
             } catch {
                 print("Error initializing background sound: \(error.localizedDescription)")
             }
