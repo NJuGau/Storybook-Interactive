@@ -12,6 +12,16 @@ targets:
   StorybookInteractive:
     type: application
     platform: iOS
+    info:
+        path: StorybookInteractive/Info.plist
+        properties:
+            NSCameraUsageDescription: "Nyalakan kamera untuk memindai kartu"
+            UIApplicationSceneManifest:
+                UIApplicationSupportsMultipleScenes: false
+                UISceneConfigurations:
+                    UIWindowSceneSessionRoleApplication:
+                      - UISceneConfigurationName: "Default Configuration"
+                        UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
     sources: [StorybookInteractive]
     resources: [Resources]
     settings:
