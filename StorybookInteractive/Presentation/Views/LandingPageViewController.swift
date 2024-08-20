@@ -20,14 +20,14 @@ class LandingPageViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -200),
+            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -270),
             
             nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 38),
             nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nameTextField.widthAnchor.constraint(equalToConstant: 414),
             nameTextField.heightAnchor.constraint(equalToConstant: 56),
             
-            nextButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 361),
+            nextButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 370),
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nextButton.widthAnchor.constraint(equalToConstant: 270),
             nextButton.heightAnchor.constraint(equalToConstant: 64)
