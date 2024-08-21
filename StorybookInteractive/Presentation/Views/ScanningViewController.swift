@@ -19,6 +19,7 @@ protocol ScanningDelegate {
 class ScanningViewController: UIViewController {
     
     var delegate: ScanningDelegate?
+    
 
     var scanState: ScanState = .initial {
         didSet {
@@ -33,25 +34,6 @@ class ScanningViewController: UIViewController {
         view.backgroundColor = .white
         return view
     }()
-    
-    // TESTING PURPOSE
-//    private let nameLabel: UILabel = {
-//        let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.text = "Name"
-//        label.textColor = .black
-//        label.font = UIFont.systemFont(ofSize: 14)
-//        return label
-//    }()
-//    
-//    private let confidenceLabel: UILabel = {
-//        let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.text = "Confidence"
-//        label.textColor = .black // Ensure the text is visible
-//        label.font = UIFont.systemFont(ofSize: 12)
-//        return label
-//    }()
     
     private let dummyButton: UIButton = {
         let button =  UIButton()
@@ -101,10 +83,6 @@ class ScanningViewController: UIViewController {
             view.addSubview(cameraView)
             view.addSubview(dummyButton)
             view.addSubview(promptLabel)
-            
-            // TESTING PURPOSE
-            //            view.addSubview(nameLabel)
-            //            view.addSubview(confidenceLabel)
           
             dummyButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(startScanning(_ :))))
             
@@ -137,17 +115,6 @@ class ScanningViewController: UIViewController {
             cameraView.heightAnchor.constraint(equalToConstant: 500)
         ])
         
-        // TESTING PURPOSE
-//        NSLayoutConstraint.activate([
-//            nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10), // Adjust the spacing as needed
-//            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-//        ])
-//        
-//        NSLayoutConstraint.activate([
-//            confidenceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10), // Adjust the spacing as needed
-//            confidenceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-//        ])
-        
         NSLayoutConstraint.activate([
             dummyButton.centerXAnchor.constraint(equalTo: cameraView.centerXAnchor),
             dummyButton.centerYAnchor.constraint(equalTo: cameraView.centerYAnchor),
@@ -172,12 +139,12 @@ class ScanningViewController: UIViewController {
         }
         
         func setupModel(){
-//            if let visionModel = try? VNCoreMLModel(for: classificationModel.model) {
-//                request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
-//                request?.imageCropAndScaleOption = .scaleFill
-//            } else {
-//                fatalError()
-//            }
+            if let visionModel = try? VNCoreMLModel(for: classificationModel.model) {
+                request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
+                request?.imageCropAndScaleOption = .scaleFill
+            } else {
+                fatalError()
+            }
         }
         
         func setupCamera(){
@@ -223,29 +190,14 @@ extension ScanningViewController {
     func visionRequestDidComplete(request: VNRequest, error: Error?){
         if let classificationResults = request.results as? [VNClassificationObservation] {
             guard let result = classificationResults.first else {
-//                showFailResult()
                 return
             }
+            
+            //check if it werent non-classified
             if result.confidence > 0.90 && result.identifier != "NonClassified" {
-                videoHandler.stop()
+                print(result.identifier)
                 delegate?.didScanCompleteDelegate(self, didCaptureResult: result.identifier)
             }
-//            showResults(objectLabel: result.identifier, confidence: result.confidence)
         }
     }
-
-    // TESTING PURPOSE
-//    func showFailResult() {
-//        DispatchQueue.main.sync {
-//            self.nameLabel.text = "n/a result"
-//            self.confidenceLabel.text = "-- %"
-//        }
-//    }
-//
-//    func showResults(objectLabel: String, confidence: VNConfidence) {
-//        DispatchQueue.main.sync {
-//            self.nameLabel.text = objectLabel
-//            self.confidenceLabel.text = "\(round(confidence * 100)) %"
-//        }
-//    }
 }

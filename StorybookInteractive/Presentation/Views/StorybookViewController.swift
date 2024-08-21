@@ -11,9 +11,11 @@ import UIKit
 
 protocol StorybookViewControllerDelegate: AnyObject {
     func didRequestNextPage()
+    func didRequestCurrentPageNumber() -> Int
 }
 
 class StorybookViewController: UIViewController {
+    
     var page = 7
     var bookId = "37bff686-7d09-4e53-aa90-fb465da131b5"
 
@@ -29,6 +31,9 @@ class StorybookViewController: UIViewController {
     private var backgroundImage: [Background] = []
     private var bookDetail: Book!
     private var isScan = false
+    
+    private var scanningView: ScanningViewController?
+    private var repeatView: RepeatViewController?
     
     private var isImageScaled = false
     private var overlay: UIView?
@@ -64,13 +69,12 @@ class StorybookViewController: UIViewController {
         
         
         // LOAD IMAGE AFTER SCAN
-        loadImageAfterScan()
         
         // Load story text
 //        storyTextBeforeScan(text: stories[0].text)
         
         // SCAN FLASH CARD
-
+        setupScanView()
 
     }
     
@@ -80,15 +84,17 @@ class StorybookViewController: UIViewController {
         let storyRepository = JSONStoryRepository()
         let backgroundRepository = JSONBackgroundRepository()
         let objectImageRepository = JSONObjectImageRepository()
+        let storyScanRepository = JSONStoryScanRepository()
         
         // USECASES
         let bookUsecase = BookUsecase(bookRepository: bookRepository)
         let storyUsecase = StoryUsecase(storyRepository: storyRepository)
         let backgroundUsecase = BackgroundUsecase(backgroundRepository: backgroundRepository)
         let objectImageUsecase = ObjectImageUsecase(objectImageRepository: objectImageRepository)
+        let storyScanUsecase = StoryScanUsecase(storyScanRepository: storyScanRepository)
         
         // INIT VIEW MODEL
-        viewModel = StorybookViewModel(bookId: bookId, page: page, bookUsecase: bookUsecase,storyUsecase: storyUsecase, backgroundUsecase: backgroundUsecase, objectImageUsecase: objectImageUsecase)
+        viewModel = StorybookViewModel(bookId: bookId, page: page, bookUsecase: bookUsecase,storyUsecase: storyUsecase, backgroundUsecase: backgroundUsecase, objectImageUsecase: objectImageUsecase, storyScanUsecase: storyScanUsecase)
         
         // GET THE DATA
         bookDetail = viewModel.loadBookDetail()
@@ -324,5 +330,73 @@ extension StorybookViewController {
                 label.isHidden = true
             }
         }
+    }
+}
+
+// HELPER FOR SCAN OVERLAY VIEW
+extension StorybookViewController: ScanningDelegate {
+    func setupScanView() {
+        if let currentPageNumber: Int = delegate?.didRequestCurrentPageNumber() {
+            let prompt = viewModel.getScanCardForByPage(bookId: bookId, page: currentPageNumber)
+            scanningView = ScanningViewController(promptText: prompt.scanCard)
+            scanningView?.delegate = self
+            view.addSubview(scanningView?.view ?? UIView())
+        }
+    }
+    
+    func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String) {
+        if let currentPageNumber: Int = delegate?.didRequestCurrentPageNumber() {
+            let prompt = viewModel.getScanCardForByPage(bookId: bookId, page: currentPageNumber)
+            if prompt.scanCard == identifier {
+                removeScanningView()
+                setupRepeatView(cardImageName: prompt.scanCard)
+            }
+        }
+    }
+    
+    func removeScanningView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.scanningView?.videoHandler.stop()
+            self?.scanningView?.view.removeFromSuperview()
+            self?.scanningView = nil
+        }
+    }
+}
+
+// HELPER FOR REPEATVIEW
+extension StorybookViewController: RepeatDelegate {
+    
+    func didPressCloseDelegate(_ controller: RepeatViewController) {
+        print("touch close")
+        // TODO: implement stop dialogue sound if any
+        removeRepeatView()
+        loadImageAfterScan()
+    }
+    
+    func didPressCardDelegate(_ controller: RepeatViewController) {
+        // TODO: implement repeat sound for cards
+        print("touch repeat")
+    }
+    
+    func setupRepeatView(cardImageName: String) {
+        DispatchQueue.main.async { [weak self] in
+            self?.repeatView = RepeatViewController(cardImageName: cardImageName)
+            self?.repeatView?.delegate = self
+            self?.view.addSubview(self?.repeatView?.view ?? UIView())
+        }
+    }
+    
+    func removeRepeatView() {
+        DispatchQueue.main.async { [weak self] in
+                guard let strongSelf = self else { return }
+                // Remove the view
+                strongSelf.repeatView?.view.removeFromSuperview()
+                strongSelf.repeatView = nil
+                
+                // Force layout update
+                strongSelf.view.setNeedsLayout()
+                strongSelf.view.layoutIfNeeded()
+                
+            }
     }
 }

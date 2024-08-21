@@ -13,6 +13,7 @@ internal final class StorybookViewModel {
     private let backgroundUsecase: BackgroundUsecase
     private let objectImageUsecase: ObjectImageUsecase
     private let bookUsecase: BookUsecase
+    private let storyScanUsecase: StoryScanUsecase
     private var bookId: String
     private var page: Int
     
@@ -22,7 +23,8 @@ internal final class StorybookViewModel {
         bookUsecase: BookUsecase,
         storyUsecase: StoryUsecase,
         backgroundUsecase: BackgroundUsecase,
-        objectImageUsecase: ObjectImageUsecase
+        objectImageUsecase: ObjectImageUsecase,
+        storyScanUsecase: StoryScanUsecase
     )
     {
         self.bookId = bookId
@@ -31,6 +33,7 @@ internal final class StorybookViewModel {
         self.storyUsecase = storyUsecase
         self.backgroundUsecase = backgroundUsecase
         self.objectImageUsecase = objectImageUsecase
+        self.storyScanUsecase = storyScanUsecase
     }
     
     func loadBookDetail() -> Book {
@@ -97,5 +100,19 @@ internal final class StorybookViewModel {
         }
         
         return images
+    }
+    
+    func getScanCardForByPage(bookId: String, page: Int) -> StoryScan {
+        let request = StoryScanRequest(bookId: bookId, page: page)
+        let result = storyScanUsecase.fetchScanCardByBookIdAndPage(req: request)
+        
+        let scanCard = result.0
+        let errorHandler = result.1
+        
+        if let errorHandler = errorHandler {
+            print("error getting scan card prompt", errorHandler)
+        }
+        
+        return scanCard
     }
 }

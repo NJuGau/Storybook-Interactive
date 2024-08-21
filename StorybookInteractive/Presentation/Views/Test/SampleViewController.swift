@@ -9,6 +9,13 @@ import UIKit
 import AVFAudio
 
 class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate, SoundDelegate {
+    func didPressCloseDelegate(_ controller: RepeatViewController) {
+        removeRepeatView()
+    }
+    
+    func didPressCardDelegate(_ controller: RepeatViewController) {
+        
+    }
     
     // Example trigger to see if it finishes playing
     func audioDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -29,10 +36,6 @@ class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate, 
         addRepeatView()
     }
     
-    func didPressCompleteDelegate(_ controller: RepeatViewController) {
-        removeRepeatView()
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,16 +43,16 @@ class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate, 
         view.backgroundColor = .green
         
 
-//        scanningView = ScanningViewController(promptText: "Cari Burung yuk!")
-//        scanningView?.delegate = self
-//        view.addSubview(scanningView?.view ?? UIView())
+        scanningView = ScanningViewController(promptText: "Cari Burung yuk!")
+        scanningView?.delegate = self
+        view.addSubview(scanningView?.view ?? UIView())
 //        
         soundManager.delegate = self
         
 //        soundManager.setupBackgroundSound(soundName: "SampleBackground")
-        soundManager.setupDialogueSound(soundName: "SampleForeground")
+//        soundManager.setupDialogueSound(soundName: "SampleForeground")
 //        soundManager.playBackgroundSound()
-        soundManager.playDialogueSound()
+//        soundManager.playDialogueSound()
         
 //        let buttonNextPage = NextButtonComponent()
 //        
@@ -70,7 +73,7 @@ class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate, 
     
     func addRepeatView() {
         DispatchQueue.main.async { [weak self] in
-            self?.repeatView = RepeatViewController(cardImageName: "BirdCard")
+            self?.repeatView = RepeatViewController(cardImageName: "Burung-1")
             self?.repeatView?.delegate = self
             self?.view.addSubview(self?.repeatView?.view ?? UIView())
         }
