@@ -1,0 +1,86 @@
+[
+    {
+        "id": "7e7f0cd8-b286-4474-b8ba-2784839dff43",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1",
+        "page": 1
+    },
+    {
+        "id": "c9d92b3b-3ac3-4441-96f9-913922da8f36",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 1
+    },
+    {
+        "id": "7e7f0cd8-b286-4474-b8ba-2784839dff43",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 2
+    },
+    {
+        "id": "c9d92b3b-3ac3-4441-96f9-913922da8f36",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 2
+    },
+    {
+        "id": "7e7f0cd8-b286-4474-b8ba-2784839dff43",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 3
+    },
+    {
+        "id": "c9d92b3b-3ac3-4441-96f9-913922da8f36",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 3
+    },
+    {
+        "id": "7e7f0cd8-b286-4474-b8ba-2784839dff43",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 4
+    },
+    {
+        "id": "c9d92b3b-3ac3-4441-96f9-913922da8f36",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 4
+    },
+    {
+        "id": "7e7f0cd8-b286-4474-b8ba-2784839dff43",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 5
+    },
+    {
+        "id": "c9d92b3b-3ac3-4441-96f9-913922da8f36",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 5
+    },
+    {
+        "id": "7e7f0cd8-b286-4474-b8ba-2784839dff43",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 6
+    },
+    {
+        "id": "c9d92b3b-3ac3-4441-96f9-913922da8f36",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 6
+    },
+    {
+        "id": "7e7f0cd8-b286-4474-b8ba-2784839dff43",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 7
+    },
+    {
+        "id": "c9d92b3b-3ac3-4441-96f9-913922da8f36",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "image": "BackgroundBook1Page1WithCharacter",
+        "page": 7
+    }
+]

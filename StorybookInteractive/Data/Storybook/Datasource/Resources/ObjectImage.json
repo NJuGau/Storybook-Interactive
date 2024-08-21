@@ -1,0 +1,128 @@
+[
+    {
+        "id": "e6120c32-9b01-487e-9e49-28d1a6861d11",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Burung",
+        "image": "Bird1",
+        "isScan": true,
+        "padding": {
+            "top": 40,
+            "bottom": 1470,
+            "left": 180,
+            "right": 1796
+        },
+        "size": {
+            "width": 75,
+            "height": 68
+        }
+    },
+    {
+        "id": "0eb12312-a45a-49b7-bdee-17ce7a566812",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Burung",
+        "image": "Bird2",
+        "isScan": true,
+        "padding": {
+          "top": 20,
+          "bottom": 1470,
+          "left": 780,
+          "right": 404
+        },
+        "size": {
+            "width": 81.5,
+            "height": 75.5
+        }
+    },
+    {
+        "id": "43368ed6-7cfd-4d9b-80ea-b78ce05f926f",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Rubah",
+        "image": "Fox",
+        "isScan": false,
+        "padding": {
+          "top": 270,
+          "bottom": 620,
+          "left": 230,
+          "right": 1388
+        },
+        "size": {
+            "width": 239,
+            "height": 242.5
+        }
+    },
+    {
+        "id": "b1894457-d372-4b64-81cb-dba0715cf456",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Kucing",
+        "image": "Cat",
+        "isScan": false,
+        "padding": {
+            "top": 365,
+            "bottom": 574,
+            "left": 650,
+            "right": 416
+        },
+        "size": {
+            "width": 233.5,
+            "height": 173
+        }
+    },
+    {
+        "id": "45cf2992-2480-4da9-a690-59363a53f043",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Kupu-kupu",
+        "image": "Butterfly1",
+        "isScan": false,
+        "padding": {
+            "top": 280,
+            "bottom": 574,
+            "left": 620,
+            "right": 1796
+        },
+        "size": {
+            "width": 68,
+            "height": 81
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Kupu-kupu",
+        "image": "Butterfly2",
+        "isScan": false,
+        "padding": {
+            "top": 320,
+            "bottom": 574,
+            "left": 820,
+            "right": 1796
+        },
+        "size": {
+            "width": 87.5,
+            "height": 75.5
+        }
+    },
+    {
+        "id": "43674cc1-2df0-45f5-ae00-a8d928dec39f",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Tupai",
+        "image": "Squirel",
+        "isScan": false,
+        "padding": {
+            "top": 270,
+            "bottom": 620,
+            "left": 95,
+            "right": 1796
+        },
+        "size": {
+            "width": 79,
+            "height": 127.5
+        }
+    }
+]
