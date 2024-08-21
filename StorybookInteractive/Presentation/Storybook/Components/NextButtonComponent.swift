@@ -12,18 +12,18 @@ class NextButtonComponent: UIButton {
     override init(frame: CGRect){
         super.init(frame: frame)
         
-        let button = UIButton(type: .infoLight)
-        button.setTitle("NEXT", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.frame = frame
-//        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        
-        self.addSubview(button)
+        self.setTitle("Halaman selanjutnya >", for: .normal)
+        self.setTitleColor(.white, for: .normal)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+}
+
+#Preview {
+    NextButtonComponent()
 }

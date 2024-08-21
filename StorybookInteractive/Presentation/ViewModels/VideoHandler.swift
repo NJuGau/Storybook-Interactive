@@ -80,9 +80,9 @@ class VideoHandler: NSObject {
             
             previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             previewLayer?.videoGravity = .resizeAspect
-            previewLayer?.connection?.videoOrientation = .landscapeRight
-//            previewLayer?.connection?.videoRotationAngle = 90 TODO: use this instead to avoid deprecation
-            
+
+            previewLayer?.connection?.videoRotationAngle = 180
+
             DispatchQueue.main.async {
                 self.delegate?.videoCapture(self, didCaptureVideoFrame: nil) // Update or notify the delegate
             }
