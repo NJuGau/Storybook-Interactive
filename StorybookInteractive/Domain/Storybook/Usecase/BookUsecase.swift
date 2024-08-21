@@ -9,9 +9,11 @@ import Foundation
 
 internal protocol BookUsecaseProtocol {
     func fetchListBook() -> ([Book], ErrorHandler?)
+    func fetchBookById(req: BookRequest) -> (Book?, ErrorHandler?)
 }
 
 internal final class BookUsecase: BookUsecaseProtocol {
+    
     private let bookRepository: BookRepository
     
     init(bookRepository: BookRepository) {
@@ -20,5 +22,8 @@ internal final class BookUsecase: BookUsecaseProtocol {
 
     func fetchListBook() -> ([Book], ErrorHandler?) {
         bookRepository.fetchListBook()
+    }
+    func fetchBookById(req: BookRequest) -> (Book?, ErrorHandler?) {
+        bookRepository.fetchBookById(req: req)
     }
 }

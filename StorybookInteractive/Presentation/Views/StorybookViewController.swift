@@ -8,7 +8,17 @@
 import Foundation
 import UIKit
 
+
+protocol StorybookViewControllerDelegate: AnyObject {
+    func didRequestNextPage()
+}
+
 class StorybookViewController: UIViewController {
+    var page = 7
+    var bookId = "37bff686-7d09-4e53-aa90-fb465da131b5"
+
+    weak var delegate: StorybookViewControllerDelegate?
+
         
     private var viewModel: StorybookViewModel!
     private var background: UIImageView!
@@ -17,17 +27,23 @@ class StorybookViewController: UIViewController {
     private var images: [ObjectImage] = []
     private var imageScan: [ObjectImage] = []
     private var backgroundImage: [Background] = []
+    private var bookDetail: Book!
     private var isScan = false
     private var lottieManager: LottieManager?
-    private var page = 1
-    private var bookId: String = "37bff686-7d09-4e53-aa90-fb465da131b5"
-
+    
     private var isImageScaled = false
     private var overlay: UIView?
     private var isLabelVisible = false
 
-    private var nextPageButton: UIButton!
-
+    init(bookId: String, page: Int) {
+        self.bookId = bookId
+        self.page = page
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +56,7 @@ class StorybookViewController: UIViewController {
         // ADD TAP GESTURE
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeBackgroundImage))
         view.addGestureRecognizer(tapGesture)
-        
-        
-
     }
-    
-    
-    
     
     private func loadPage(){
         // Load background
@@ -67,45 +77,26 @@ class StorybookViewController: UIViewController {
     
     private func setupViewModel() {
         // REPOSITORIES
+        let bookRepository = JSONBookRepository()
         let storyRepository = JSONStoryRepository()
         let backgroundRepository = JSONBackgroundRepository()
         let objectImageRepository = JSONObjectImageRepository()
         
         // USECASES
+        let bookUsecase = BookUsecase(bookRepository: bookRepository)
         let storyUsecase = StoryUsecase(storyRepository: storyRepository)
         let backgroundUsecase = BackgroundUsecase(backgroundRepository: backgroundRepository)
         let objectImageUsecase = ObjectImageUsecase(objectImageRepository: objectImageRepository)
         
         // INIT VIEW MODEL
-        viewModel = StorybookViewModel(bookId: bookId, page: page, storyUsecase: storyUsecase, backgroundUsecase: backgroundUsecase, objectImageUsecase: objectImageUsecase)
+        viewModel = StorybookViewModel(bookId: bookId, page: page, bookUsecase: bookUsecase,storyUsecase: storyUsecase, backgroundUsecase: backgroundUsecase, objectImageUsecase: objectImageUsecase)
         
         // GET THE DATA
+        bookDetail = viewModel.loadBookDetail()
         stories = viewModel.loadStories()
         images = viewModel.loadImage()
         imageScan = viewModel.loadScanableImage()
         backgroundImage = viewModel.loadBackgroundImages()
-    }
-
-
-    private func storyTextBeforeScan(text: String) {
-        addStoryText(text: text)
-    }
-    
-    private func addStoryText(text: String) {
-        storyLabel = UILabel()
-        storyLabel.text = text
-        storyLabel.translatesAutoresizingMaskIntoConstraints = false
-        storyLabel.numberOfLines = 0
-        storyLabel.font = UIFont.systemFont(ofSize: 28)
-        storyLabel.textColor = .black
-        
-        view.addSubview(storyLabel)
-
-        NSLayoutConstraint.activate([
-            storyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: stories[page].padding.top),
-            storyLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: stories[page].padding.left),
-            storyLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: stories[page].padding.right)
-        ])
     }
     
     private func loadImageAfterScan() {
@@ -162,10 +153,42 @@ class StorybookViewController: UIViewController {
                 label.heightAnchor.constraint(equalToConstant: 50)
             ])
         }
-        
-        startLottie(x: 100, y: 100)
     }
     
+    private func setupNextPageButton() {
+        let nextPageButton = UIButton(type: .system)
+        nextPageButton.setTitle("Next Page", for: .normal)
+        nextPageButton.setTitleColor(.white, for: .normal)
+        nextPageButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        nextPageButton.layer.cornerRadius = 10
+        nextPageButton.translatesAutoresizingMaskIntoConstraints = false
+        nextPageButton.addTarget(self, action: #selector(nextPageTapped), for: .touchUpInside)
+
+        view.addSubview(nextPageButton)
+
+        NSLayoutConstraint.activate([
+            nextPageButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            nextPageButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            nextPageButton.widthAnchor.constraint(equalToConstant: 150),
+            nextPageButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+
+        //Setup button next page
+            // let buttonNextPage = NextButtonComponent()
+            
+            // view.addSubview(buttonNextPage)
+            
+            // //TODO: Change constant to make it responsive
+            // NSLayoutConstraint.activate([
+            //     buttonNextPage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            //     buttonNextPage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            // ])
+    }
+
+}
+
+// HELPER
+extension StorybookViewController {
     private func createImage(imageName: String) -> UIImageView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: imageName)
@@ -192,64 +215,29 @@ class StorybookViewController: UIViewController {
         return label
     }
     
-    private func setupNextPageButton() {
-            nextPageButton = UIButton(type: .system)
-            nextPageButton.setTitle("Halaman Berikutnya", for: .normal) // Set button title
-            nextPageButton.setTitleColor(.white, for: .normal)
-            nextPageButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-            nextPageButton.layer.cornerRadius = 10
-            nextPageButton.translatesAutoresizingMaskIntoConstraints = false
-            
-            nextPageButton.addTarget(self, action: #selector(nextPageTapped), for: .touchUpInside) // Set button action
-            
-            view.addSubview(nextPageButton)
-            
-            // Add constraints to position the button in the bottom-right corner
-            NSLayoutConstraint.activate([
-                nextPageButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-                nextPageButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-                nextPageButton.widthAnchor.constraint(equalToConstant: 200),
-                nextPageButton.heightAnchor.constraint(equalToConstant: 50)
-            ])
-
-            // //Setup button next page
-            // let buttonNextPage = NextButtonComponent()
-            
-            // view.addSubview(buttonNextPage)
-            
-            // //TODO: Change constant to make it responsive
-            // NSLayoutConstraint.activate([
-            //     buttonNextPage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            //     buttonNextPage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-            // ])
-        }
-
-}
-
-// HELPER
-extension StorybookViewController {
-    private func popupAnimation(image: UIImageView) {
-        UIView.animate(withDuration: 0.9,
-                       delay: 0,
-                       usingSpringWithDamping: 0.9,
-                       initialSpringVelocity: 0.9,
-                       options: [.autoreverse, .repeat],
-                       animations: {
-            image.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-        }, completion: nil)
+    private func createStoryTextLabel(text: String) {
+        storyLabel = UILabel()
+        storyLabel.text = text
+        storyLabel.translatesAutoresizingMaskIntoConstraints = false
+        storyLabel.numberOfLines = 0
+        storyLabel.font = UIFont.systemFont(ofSize: 28)
+        storyLabel.textColor = .black
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            image.layer.removeAllAnimations()
-        }
+        view.addSubview(storyLabel)
 
+        NSLayoutConstraint.activate([
+            storyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: stories[page].padding.top),
+            storyLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: stories[page].padding.left),
+            storyLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: stories[page].padding.right)
+        ])
     }
     
     private func setupConstraint(image: UIImageView,top: Double, bottom: Double, right: Double, left: Double, height: Double, width: Double) {
         NSLayoutConstraint.activate([
             image.topAnchor.constraint(equalTo: view.topAnchor, constant: top),
             image.leftAnchor.constraint(equalTo: view.leftAnchor, constant: left),
-            image.widthAnchor.constraint(equalToConstant: width*0.8),
-            image.heightAnchor.constraint(equalToConstant:height*0.8)
+            image.widthAnchor.constraint(equalToConstant: width),
+            image.heightAnchor.constraint(equalToConstant:height)
 
         ])
     }
@@ -283,19 +271,24 @@ extension StorybookViewController {
         
         view.addSubview(newBackground)
         
+        if page < bookDetail.totalPage {
+            setupNextPageButton()
+        }
+        
         loadImage()
         
-        setupNextPageButton()
 //        self.addStoryText(text: stories[1].text)
     }
     
     @objc 
     private func nextPageTapped() {
-        // Handle the logic to load the next page
-        page += 1
-        
-        // You may want to update the background, images, and text for the next page here
-        loadPage()
+        if let parent = self.presentingViewController as? BookViewController {
+//             // Memicu method nextPage di BookViewController
+            
+            delegate?.didRequestNextPage()
+            dismiss(animated: true, completion: nil)
+            parent.nextPage()
+        }
     }
 
     

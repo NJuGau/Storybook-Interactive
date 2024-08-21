@@ -12,12 +12,14 @@ internal final class StorybookViewModel {
     private let storyUsecase: StoryUsecase
     private let backgroundUsecase: BackgroundUsecase
     private let objectImageUsecase: ObjectImageUsecase
+    private let bookUsecase: BookUsecase
     private var bookId: String
     private var page: Int
     
     init(
         bookId: String,
         page: Int,
+        bookUsecase: BookUsecase,
         storyUsecase: StoryUsecase,
         backgroundUsecase: BackgroundUsecase,
         objectImageUsecase: ObjectImageUsecase
@@ -25,9 +27,22 @@ internal final class StorybookViewModel {
     {
         self.bookId = bookId
         self.page = page
+        self.bookUsecase = bookUsecase
         self.storyUsecase = storyUsecase
         self.backgroundUsecase = backgroundUsecase
         self.objectImageUsecase = objectImageUsecase
+    }
+    
+    func loadBookDetail() -> Book {
+        let result = bookUsecase.fetchBookById(req: BookRequest(id: bookId))
+        let book = result.0
+        let errorHandler = result.1
+        
+        if let errorHandler = errorHandler {
+            print("error load book detail", errorHandler)
+        }
+
+        return book!
     }
     
     // GET BACKGROUND IMAGES

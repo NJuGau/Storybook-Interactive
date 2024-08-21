@@ -9,9 +9,11 @@ import Foundation
 
 internal protocol BookRepository {
     func fetchListBook() -> ([Book], ErrorHandler?)
+    func fetchBookById(req: BookRequest) -> (Book?, ErrorHandler?)
 }
 
 internal final class JSONBookRepository: BookRepository {
+        
     private let jsonManager = JsonManager.shared
     
     func fetchListBook() -> ([Book], ErrorHandler?) {
@@ -23,5 +25,19 @@ internal final class JSONBookRepository: BookRepository {
         case .failure(let error):
             return ([], error)
         }
+    }
+    
+    func fetchBookById(req: BookRequest) -> (Book?, ErrorHandler?) {
+        let (books, errorHandler) = fetchListBook()
+        
+        if let error = errorHandler {
+            return (nil, error)
+        }
+
+        let result = books.first{
+            $0.id == req.id
+        }
+        
+        return (result, nil)
     }
 }
