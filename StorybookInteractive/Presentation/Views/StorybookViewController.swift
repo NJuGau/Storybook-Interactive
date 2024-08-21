@@ -29,7 +29,6 @@ class StorybookViewController: UIViewController {
     private var backgroundImage: [Background] = []
     private var bookDetail: Book!
     private var isScan = false
-    private var lottieManager: LottieManager?
     
     private var isImageScaled = false
     private var overlay: UIView?
@@ -156,33 +155,15 @@ class StorybookViewController: UIViewController {
     }
     
     private func setupNextPageButton() {
-        let nextPageButton = UIButton(type: .system)
-        nextPageButton.setTitle("Next Page", for: .normal)
-        nextPageButton.setTitleColor(.white, for: .normal)
-        nextPageButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        nextPageButton.layer.cornerRadius = 10
-        nextPageButton.translatesAutoresizingMaskIntoConstraints = false
-        nextPageButton.addTarget(self, action: #selector(nextPageTapped), for: .touchUpInside)
-
-        view.addSubview(nextPageButton)
-
+        let buttonNextPage = NextButtonComponent()
+        buttonNextPage.addTarget(self, action: #selector(nextPageTapped), for: .touchUpInside)
+        
+        view.addSubview(buttonNextPage)
+        
         NSLayoutConstraint.activate([
-            nextPageButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            nextPageButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-            nextPageButton.widthAnchor.constraint(equalToConstant: 150),
-            nextPageButton.heightAnchor.constraint(equalToConstant: 50)
+         buttonNextPage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+         buttonNextPage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
         ])
-
-        //Setup button next page
-            // let buttonNextPage = NextButtonComponent()
-            
-            // view.addSubview(buttonNextPage)
-            
-            // //TODO: Change constant to make it responsive
-            // NSLayoutConstraint.activate([
-            //     buttonNextPage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            //     buttonNextPage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-            // ])
     }
 
 }
@@ -240,22 +221,6 @@ extension StorybookViewController {
             image.heightAnchor.constraint(equalToConstant:height)
 
         ])
-    }
-    
-    private func startLottie(x: Double, y: Double) {
-        lottieManager = LottieManager(fileName: "LottieHandTap", loopMode: .loop, speed: 1.0)
-        
-        lottieManager?.attachToView(self.view, frame: CGRect(x: x, y: y, width: 100, height: 100))
-        
-        lottieManager?.play()
-    }
-    
-    private func stopLottie() {
-        Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] timer in
-            self?.lottieManager?.stop()
-            
-            timer.invalidate()
-        }
     }
 }
 

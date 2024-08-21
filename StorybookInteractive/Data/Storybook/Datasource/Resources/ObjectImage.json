@@ -489,6 +489,24 @@
         "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 7,
+        "name": "Matahari",
+        "image": "Sun",
+        "isScan": true,
+        "padding": {
+            "top": 28,
+            "bottom": 0,
+            "left": 125,
+            "right": 0
+        },
+        "size": {
+            "width": 165.5,
+            "height": 145.5
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 7,
         "name": "Kupu-kupu",
         "image": "Butterfly7",
         "isScan": false,

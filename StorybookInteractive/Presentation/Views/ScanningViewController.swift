@@ -172,12 +172,12 @@ class ScanningViewController: UIViewController {
         }
         
         func setupModel(){
-            if let visionModel = try? VNCoreMLModel(for: classificationModel.model) {
-                request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
-                request?.imageCropAndScaleOption = .scaleFill
-            } else {
-                fatalError()
-            }
+//            if let visionModel = try? VNCoreMLModel(for: classificationModel.model) {
+//                request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
+//                request?.imageCropAndScaleOption = .scaleFill
+//            } else {
+//                fatalError()
+//            }
         }
         
         func setupCamera(){
