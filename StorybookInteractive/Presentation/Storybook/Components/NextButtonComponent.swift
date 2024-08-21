@@ -16,7 +16,6 @@ class NextButtonComponent: UIButton {
         self.setTitleColor(.white, for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         self.translatesAutoresizingMaskIntoConstraints = false
-        
     }
     
     required init?(coder: NSCoder) {
