@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate {
     
     
@@ -33,6 +34,7 @@ class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate {
 
         view.backgroundColor = .green
         
+
 //        scanningView = ScanningViewController(promptText: "Cari Burung yuk!")
 //        scanningView?.delegate = self
 //        view.addSubview(scanningView?.view ?? UIView())

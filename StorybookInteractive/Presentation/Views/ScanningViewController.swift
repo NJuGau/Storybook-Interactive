@@ -19,6 +19,7 @@ protocol ScanningDelegate {
 class ScanningViewController: UIViewController {
     
     var delegate: ScanningDelegate?
+
     var scanState: ScanState = .initial {
         didSet {
             checkState()
@@ -72,7 +73,7 @@ class ScanningViewController: UIViewController {
         label.backgroundColor = .white
         return label
     }()
-    
+  
     private let classificationModel = try! AllCardClassifier(configuration: .init())
         
     var videoHandler: VideoHandler!
@@ -104,7 +105,7 @@ class ScanningViewController: UIViewController {
             // TESTING PURPOSE
             //            view.addSubview(nameLabel)
             //            view.addSubview(confidenceLabel)
-            
+          
             dummyButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(startScanning(_ :))))
             
             setupModel()
@@ -171,12 +172,12 @@ class ScanningViewController: UIViewController {
         }
         
         func setupModel(){
-            if let visionModel = try? VNCoreMLModel(for: classificationModel.model) {
-                request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
-                request?.imageCropAndScaleOption = .scaleFill
-            } else {
-                fatalError()
-            }
+//            if let visionModel = try? VNCoreMLModel(for: classificationModel.model) {
+//                request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
+//                request?.imageCropAndScaleOption = .scaleFill
+//            } else {
+//                fatalError()
+//            }
         }
         
         func setupCamera(){

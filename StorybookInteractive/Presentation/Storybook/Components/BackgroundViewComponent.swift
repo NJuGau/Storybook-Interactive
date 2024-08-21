@@ -23,8 +23,9 @@ class BackgroundViewComponent: UIImageView {
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         self.addSubview(imageView)
-
-        NSLayoutConstraint.activate([            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+        
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             imageView.topAnchor.constraint(equalTo: self.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
