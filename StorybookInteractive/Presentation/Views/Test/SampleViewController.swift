@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import AVFAudio
 
-
-class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate {
+class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate, SoundDelegate {
+    
+    // Example trigger to see if it finishes playing
+    func audioDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("Finish playing")
+    }
     
     
     var scanResult: String?
@@ -39,19 +44,21 @@ class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate {
 //        scanningView?.delegate = self
 //        view.addSubview(scanningView?.view ?? UIView())
 //        
+        soundManager.delegate = self
+        
 //        soundManager.setupBackgroundSound(soundName: "SampleBackground")
-//        soundManager.setupDialogueSound(soundName: "SampleForeground")
+        soundManager.setupDialogueSound(soundName: "SampleForeground")
 //        soundManager.playBackgroundSound()
-//        soundManager.playDialogueSound()
+        soundManager.playDialogueSound()
         
-        let buttonNextPage = NextButtonComponent()
-        
-        view.addSubview(buttonNextPage)
-        
-        NSLayoutConstraint.activate([
-            buttonNextPage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            buttonNextPage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-        ])
+//        let buttonNextPage = NextButtonComponent()
+//        
+//        view.addSubview(buttonNextPage)
+//        
+//        NSLayoutConstraint.activate([
+//            buttonNextPage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+//            buttonNextPage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+//        ])
     }
 
     func removeScanningView() {
