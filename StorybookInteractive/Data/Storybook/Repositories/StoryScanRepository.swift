@@ -19,8 +19,6 @@ internal final class JSONStoryScanRepository: StoryScanRepository {
         
         let result = jsonManager.loadJSONData(from: "StoryScan", as: [StoryScan].self)
         
-        print(result)
-        
         switch result {
         case .success(let scanCards):
             return (scanCards, nil)

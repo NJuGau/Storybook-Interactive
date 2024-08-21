@@ -336,19 +336,18 @@ extension StorybookViewController {
 // HELPER FOR SCAN OVERLAY VIEW
 extension StorybookViewController: ScanningDelegate {
     func setupScanView() {
-        scanningView = ScanningViewController(promptText: "Cari Burung yuk!")
-        scanningView?.delegate = self
-        view.addSubview(scanningView?.view ?? UIView())
+        if let currentPageNumber: Int = delegate?.didRequestCurrentPageNumber() {
+            let prompt = viewModel.getScanCardForByPage(bookId: bookId, page: currentPageNumber)
+            scanningView = ScanningViewController(promptText: prompt.scanCard)
+            scanningView?.delegate = self
+            view.addSubview(scanningView?.view ?? UIView())
+        }
     }
     
     func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String) {
-        // TODO: validate if key of card in the story is the same as key of identifier
         if let currentPageNumber: Int = delegate?.didRequestCurrentPageNumber() {
-            print("function scan: page: ", currentPageNumber)
             let prompt = viewModel.getScanCardForByPage(bookId: bookId, page: currentPageNumber)
-            print("prompt: ", prompt.scanCard)
             if prompt.scanCard == identifier {
-                // Desired result has been acquired, get next interface up
                 removeScanningView()
                 setupRepeatView(cardImageName: prompt.scanCard)
             }
@@ -368,6 +367,7 @@ extension StorybookViewController: ScanningDelegate {
 extension StorybookViewController: RepeatDelegate {
     
     func didPressCloseDelegate(_ controller: RepeatViewController) {
+        print("touch close")
         // TODO: implement stop dialogue sound if any
         removeRepeatView()
         loadImageAfterScan()
@@ -375,6 +375,7 @@ extension StorybookViewController: RepeatDelegate {
     
     func didPressCardDelegate(_ controller: RepeatViewController) {
         // TODO: implement repeat sound for cards
+        print("touch repeat")
     }
     
     func setupRepeatView(cardImageName: String) {
@@ -386,7 +387,16 @@ extension StorybookViewController: RepeatDelegate {
     }
     
     func removeRepeatView() {
-        repeatView?.view.removeFromSuperview()
-        repeatView = nil
+        DispatchQueue.main.async { [weak self] in
+                guard let strongSelf = self else { return }
+                // Remove the view
+                strongSelf.repeatView?.view.removeFromSuperview()
+                strongSelf.repeatView = nil
+                
+                // Force layout update
+                strongSelf.view.setNeedsLayout()
+                strongSelf.view.layoutIfNeeded()
+                
+            }
     }
 }

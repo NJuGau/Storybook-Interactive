@@ -17,7 +17,6 @@ class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate, 
         
     }
     
-    
     // Example trigger to see if it finishes playing
     func audioDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         print("Finish playing")
