@@ -1,0 +1,578 @@
+[
+    {
+        "id": "e6120c32-9b01-487e-9e49-28d1a6861d11",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Burung",
+        "image": "Bird1",
+        "isScan": true,
+        "padding": {
+            "top": 40,
+            "bottom": 0,
+            "left": 180,
+            "right": 0
+        },
+        "size": {
+            "width": 75,
+            "height": 68
+        }
+    },
+    {
+        "id": "0eb12312-a45a-49b7-bdee-17ce7a566812",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Burung",
+        "image": "Bird2",
+        "isScan": true,
+        "padding": {
+          "top": 20,
+          "bottom": 0,
+          "left": 780,
+          "right": 0
+        },
+        "size": {
+            "width": 81.5,
+            "height": 75.5
+        }
+    },
+    {
+        "id": "43368ed6-7cfd-4d9b-80ea-b78ce05f926f",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Rubah",
+        "image": "Fox1",
+        "isScan": false,
+        "padding": {
+          "top": 230,
+          "bottom": 0,
+          "left": 180,
+          "right": 0
+        },
+        "size": {
+            "width": 239,
+            "height": 242.5
+        }
+    },
+    {
+        "id": "b1894457-d372-4b64-81cb-dba0715cf456",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Kucing",
+        "image": "Cat1",
+        "isScan": false,
+        "padding": {
+            "top": 330,
+            "bottom": 0,
+            "left": 620,
+            "right": 0
+        },
+        "size": {
+            "width": 233.5,
+            "height": 173
+        }
+    },
+    {
+        "id": "45cf2992-2480-4da9-a690-59363a53f043",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Kupu-kupu",
+        "image": "Butterfly1",
+        "isScan": false,
+        "padding": {
+            "top": 235,
+            "bottom": 0,
+            "left": 600,
+            "right": 0
+        },
+        "size": {
+            "width": 68,
+            "height": 81
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Kupu-kupu",
+        "image": "Butterfly2",
+        "isScan": false,
+        "padding": {
+            "top": 290,
+            "bottom": 0,
+            "left": 800,
+            "right": 0
+        },
+        "size": {
+            "width": 87.5,
+            "height": 75.5
+        }
+    },
+    {
+        "id": "43674cc1-2df0-45f5-ae00-a8d928dec39f",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 1,
+        "name": "Tupai",
+        "image": "Squirel",
+        "isScan": false,
+        "padding": {
+            "top": 230,
+            "bottom": 0,
+            "left": 75,
+            "right": 0
+        },
+        "size": {
+            "width": 79,
+            "height": 127.5
+        }
+    },
+    {
+        "id": "43674cc1-2df0-45f5-ae00-a8d928dec39f",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 2,
+        "name": "Bebek",
+        "image": "Duck1",
+        "isScan": true,
+        "padding": {
+            "top": 500,
+            "bottom": 0,
+            "left": 170,
+            "right": 0
+        },
+        "size": {
+            "width": 188.5,
+            "height": 170.5
+        }
+    },
+    {
+        "id": "43674cc1-2df0-45f5-ae00-a8d928dec39f",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 2,
+        "name": "Bebek",
+        "image": "DuckFamily",
+        "isScan": true,
+        "padding": {
+            "top": 400,
+            "bottom": 0,
+            "left": 650,
+            "right": 0
+        },
+        "size": {
+            "width": 317,
+            "height": 291.5
+        }
+    },
+    {
+        "id": "43674cc1-2df0-45f5-ae00-a8d928dec39f",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 2,
+        "name": "Bebek",
+        "image": "Duck2",
+        "isScan": true,
+        "padding": {
+            "top": 600,
+            "bottom": 0,
+            "left": 670,
+            "right": 0
+        },
+        "size": {
+            "width": 87,
+            "height": 80.5
+        }
+    },
+    {
+        "id": "43674cc1-2df0-45f5-ae00-a8d928dec39f",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 2,
+        "name": "Orang",
+        "image": "KidCharacter1",
+        "isScan": false,
+        "padding": {
+            "top": 220,
+            "bottom": 0,
+            "left": 470,
+            "right": 0
+        },
+        "size": {
+            "width": 164,
+            "height": 334.5
+        }
+    },
+    {
+        "id": "43674cc1-2df0-45f5-ae00-a8d928dec39f",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 2,
+        "name": "Kupu-kupu",
+        "image": "Butterfly3",
+        "isScan": false,
+        "padding": {
+            "top": 200,
+            "bottom": 0,
+            "left": 400,
+            "right": 0
+        },
+        "size": {
+            "width": 74,
+            "height": 74
+        }
+    },
+    {
+        "id": "43674cc1-2df0-45f5-ae00-a8d928dec39f",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 2,
+        "name": "Kupu-kupu",
+        "image": "Butterfly4",
+        "isScan": false,
+        "padding": {
+            "top": 300,
+            "bottom": 0,
+            "left": 680,
+            "right": 0
+        },
+        "size": {
+            "width": 76.5,
+            "height": 73
+        }
+    },
+    {
+        "id": "cfdd0778-951d-4b4d-bdc2-42cb809d9eaa",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 3,
+        "name": "Roti",
+        "image": "Bread",
+        "isScan": true,
+        "padding": {
+            "top": 340,
+            "bottom": 0,
+            "left": 420,
+            "right": 0
+        },
+        "size": {
+            "width": 257,
+            "height": 192
+        }
+    },
+    {
+        "id": "23de44ed-8c16-4e14-934c-002a636993d1",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 3,
+        "name": "Bebek",
+        "image": "Duck3",
+        "isScan": false,
+        "padding": {
+            "top": 450,
+            "bottom": 0,
+            "left": 120,
+            "right": 0
+        },
+        "size": {
+            "width": 331,
+            "height": 284.5
+        }
+    },
+    {
+        "id": "6eabbe2a-fbc1-4a0d-82f9-72ca60b086bc",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 3,
+        "name": "Bunga",
+        "image": "Flower1",
+        "isScan": false,
+        "padding": {
+            "top": 170,
+            "bottom": 0,
+            "left": -50,
+            "right": 0
+        },
+        "size": {
+            "width": 534,
+            "height": 268
+        }
+    },
+    {
+        "id": "bfb97a8f-0324-4fbd-8de7-4547f1b85388",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 4,
+        "name": "Bunga",
+        "image": "Flower2",
+        "isScan": true,
+        "padding": {
+            "top": 450,
+            "bottom": 0,
+            "left": 90,
+            "right": 0
+        },
+        "size": {
+            "width": 130.5,
+            "height": 195.5
+        }
+    },
+    {
+        "id": "e05c8309-958c-48d0-9f0e-668839ea1749",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 4,
+        "name": "Bunga",
+        "image": "Flower3",
+        "isScan": true,
+        "padding": {
+            "top": 370,
+            "bottom": 0,
+            "left": 850,
+            "right": 0
+        },
+        "size": {
+            "width": 93.5,
+            "height": 138
+        }
+    },
+    {
+        "id": "5ac319a0-2950-4b01-a755-1d7bfb68f3ff",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 4,
+        "name": "Kucing",
+        "image": "Cat2",
+        "isScan": false,
+        "padding": {
+            "top": 510,
+            "bottom": 0,
+            "left": 420,
+            "right": 0
+        },
+        "size": {
+            "width": 91,
+            "height": 205
+        }
+    },
+    {
+        "id": "45cf2992-2480-4da9-a690-59363a53f043",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 4,
+        "name": "Kupu-kupu",
+        "image": "Butterfly5",
+        "isScan": false,
+        "padding": {
+            "top": 455,
+            "bottom": 0,
+            "left": 365,
+            "right": 0
+        },
+        "size": {
+            "width": 77.5,
+            "height": 86
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 4,
+        "name": "Kupu-kupu",
+        "image": "Butterfly6",
+        "isScan": false,
+        "padding": {
+            "top": 500,
+            "bottom": 0,
+            "left": 665,
+            "right": 0
+        },
+        "size": {
+            "width": 80,
+            "height": 76.5
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 5,
+        "name": "Bantal",
+        "image": "Pillow",
+        "isScan": true,
+        "padding": {
+            "top": 290,
+            "bottom": 0,
+            "left": 310,
+            "right": 0
+        },
+        "size": {
+            "width": 149,
+            "height": 121.5
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 5,
+        "name": "Rubah",
+        "image": "Fox2",
+        "isScan": false,
+        "padding": {
+            "top": 430,
+            "bottom": 0,
+            "left": 40,
+            "right": 0
+        },
+        "size": {
+            "width": 379,
+            "height": 276
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 5,
+        "name": "Bebek",
+        "image": "Duck4",
+        "isScan": false,
+        "padding": {
+            "top": 470,
+            "bottom": 0,
+            "left": 430,
+            "right": 0
+        },
+        "size": {
+            "width": 183,
+            "height": 208
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 5,
+        "name": "Boneka",
+        "image": "Doll",
+        "isScan": false,
+        "padding": {
+            "top": 350,
+            "bottom": 0,
+            "left": 830,
+            "right": 0
+        },
+        "size": {
+            "width": 190,
+            "height": 225
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 6,
+        "name": "Bulu",
+        "image": "Feather",
+        "isScan": true,
+        "padding": {
+            "top": 450,
+            "bottom": 0,
+            "left": 450,
+            "right": 0
+        },
+        "size": {
+            "width": 126,
+            "height": 134
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 6,
+        "name": "Angsa",
+        "image": "Swan1",
+        "isScan": false,
+        "padding": {
+            "top": 100,
+            "bottom": 0,
+            "left": 75,
+            "right": 0
+        },
+        "size": {
+            "width": 550,
+            "height": 350
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 7,
+        "name": "Matahari",
+        "image": "Sun",
+        "isScan": true,
+        "padding": {
+            "top": 28,
+            "bottom": 0,
+            "left": 125,
+            "right": 0
+        },
+        "size": {
+            "width": 165.5,
+            "height": 145.5
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 7,
+        "name": "Kupu-kupu",
+        "image": "Butterfly7",
+        "isScan": false,
+        "padding": {
+            "top": 520,
+            "bottom": 0,
+            "left": 180,
+            "right": 0
+        },
+        "size": {
+            "width": 79,
+            "height": 69.5
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 7,
+        "name": "Kupu-kupu",
+        "image": "Butterfly8",
+        "isScan": false,
+        "padding": {
+            "top": 420,
+            "bottom": 0,
+            "left": 525,
+            "right": 0
+        },
+        "size": {
+            "width": 80.5,
+            "height": 78
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 7,
+        "name": "Angsa",
+        "image": "Swan2",
+        "isScan": false,
+        "padding": {
+            "top": 200,
+            "bottom": 0,
+            "left": 500,
+            "right": 0
+        },
+        "size": {
+            "width": 500,
+            "height": 200
+        }
+    },
+    {
+        "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 7,
+        "name": "Orang",
+        "image": "KidCharacter12",
+        "isScan": false,
+        "padding": {
+            "top": 320,
+            "bottom": 0,
+            "left": 250,
+            "right": 0
+        },
+        "size": {
+            "width": 250,
+            "height": 350
+        }
+    }
+]
