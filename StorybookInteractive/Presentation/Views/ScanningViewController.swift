@@ -172,12 +172,12 @@ class ScanningViewController: UIViewController {
         }
         
         func setupModel(){
-//            if let visionModel = try? VNCoreMLModel(for: classificationModel.model) {
-//                request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
-//                request?.imageCropAndScaleOption = .scaleFill
-//            } else {
-//                fatalError()
-//            }
+            if let visionModel = try? VNCoreMLModel(for: classificationModel.model) {
+                request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
+                request?.imageCropAndScaleOption = .scaleFill
+            } else {
+                fatalError()
+            }
         }
         
         func setupCamera(){
@@ -226,8 +226,10 @@ extension ScanningViewController {
 //                showFailResult()
                 return
             }
+            
+            //check if it werent non-classified
             if result.confidence > 0.90 && result.identifier != "NonClassified" {
-                videoHandler.stop()
+                print(result.identifier)
                 delegate?.didScanCompleteDelegate(self, didCaptureResult: result.identifier)
             }
 //            showResults(objectLabel: result.identifier, confidence: result.confidence)

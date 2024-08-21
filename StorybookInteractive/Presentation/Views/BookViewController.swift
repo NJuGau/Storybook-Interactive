@@ -30,6 +30,7 @@ class BookViewController: UIViewController {
 
     private func presentStorybookPage(page: Int) {
         let storybookViewController = StorybookViewController(bookId: bookId, page: currentPage)
+        storybookViewController.delegate = self
         storybookViewController.page = page
         storybookViewController.bookId = bookId
         storybookViewController.modalPresentationStyle = .fullScreen
@@ -49,5 +50,9 @@ class BookViewController: UIViewController {
 extension BookViewController: StorybookViewControllerDelegate {
     func didRequestNextPage() {
         nextPage()
+    }
+    
+    func didRequestCurrentPageNumber() -> Int {
+        return self.currentPage
     }
 }

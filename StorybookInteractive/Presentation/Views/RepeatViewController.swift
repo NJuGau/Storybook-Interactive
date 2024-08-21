@@ -8,7 +8,8 @@
 import UIKit
 
 protocol RepeatDelegate {
-    func didPressCompleteDelegate(_ controller: RepeatViewController)
+    func didPressCloseDelegate(_ controller: RepeatViewController)
+    func didPressCardDelegate(_ controller: RepeatViewController)
 }
 
 class RepeatViewController: UIViewController {
@@ -21,13 +22,13 @@ class RepeatViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Tekan untuk menutup"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.font = UIFont.systemFont(ofSize: 17)
         return label
     }()
     
     private let cardImage: UIImageView = {
         let image = UIImageView()
-        image.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 150, y: 100, width: 300, height: 500)
+        image.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 150, y: 100, width: 338.8, height: 474.32)
         return image
     }()
     
@@ -52,12 +53,12 @@ class RepeatViewController: UIViewController {
     
     @objc
     private func onCompletePress(_ sender: UITapGestureRecognizer) {
-        delegate?.didPressCompleteDelegate(self)
+        delegate?.didPressCloseDelegate(self)
     }
     
     private func setupConstraint() {
         NSLayoutConstraint.activate([
-            closeLabel.topAnchor.constraint(equalTo: cardImage.bottomAnchor, constant: 75),
+            closeLabel.topAnchor.constraint(equalTo: cardImage.bottomAnchor, constant: 14),
             closeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
