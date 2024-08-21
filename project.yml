@@ -30,8 +30,25 @@ targets:
       GENERATE_INFOPLIST_FILE: true
     dependencies:
         - package: Lottie
+  StorybookInteractiveTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [StorybookInteractiveTests]
+    dependencies:
+      - target: StorybookInteractive
+    settings:
+      base:
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/StorybookInteractive.app/StorybookInteractive"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+        INFOPLIST_FILE: StorybookInteractive/Info.plist
+        GENERATE_INFOPLIST_FILE: true
 schemes:
   StorybookInteractive:
     build:
       targets:
        StorybookInteractive: all
+       StorybookInteractiveTests: all
+    test:
+      targets:
+      - name: StorybookInteractiveTests
+      gatherCoverageData: true
