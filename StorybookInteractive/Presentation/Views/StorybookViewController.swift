@@ -14,7 +14,7 @@ enum SoundStoryState {
 }
 
 protocol StorybookViewControllerDelegate: AnyObject {
-    func didRequestNextPage() -> Bool
+    func didRequestNextPage(totalPage: Int) -> Bool
     func didRequestCurrentPageNumber() -> Int
 }
 
@@ -25,7 +25,9 @@ class StorybookViewController: UIViewController, SoundDelegate {
 
     weak var delegate: StorybookViewControllerDelegate?
 
-        
+    private var homeButton: UIButton?
+    private var vignetteOverlay: UIView?
+    private var nextButton: UIButton?
     private var viewModel: StorybookViewModel!
     private var background: UIImageView!
     private var storyLabel: UILabel!
@@ -71,6 +73,23 @@ class StorybookViewController: UIViewController, SoundDelegate {
         loadPage()
 
         home()
+        // LOAD STORY TEXT BEFORE SCAN
+//        createStoryTextLabel(data: stories[0])     
+        
+        let vignetteView = createVignetteView()
+        vignetteOverlay = vignetteView
+        view.addSubview(vignetteView)
+            
+            NSLayoutConstraint.activate([
+                vignetteView.topAnchor.constraint(equalTo: view.topAnchor),
+                vignetteView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                vignetteView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                vignetteView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        
+        if let button = homeButton {
+            view.bringSubviewToFront(button)
+        }
     }
     
     private func loadPage(){
@@ -86,7 +105,7 @@ class StorybookViewController: UIViewController, SoundDelegate {
     
     private func home() {
         let homeButton = ButtonComponent().homeButton
-    
+        self.homeButton = homeButton
         view.addSubview(homeButton)
         
         NSLayoutConstraint.activate([
@@ -95,6 +114,75 @@ class StorybookViewController: UIViewController, SoundDelegate {
             homeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 43),
             homeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32),
         ])
+        
+        view.bringSubviewToFront(homeButton)
+        
+        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc
+    func homeButtonTapped() {
+        quitToTitleAlert()
+    }
+    
+    private func createVignetteView() -> UIView {
+        let vignetteView = UIView(frame: self.view.bounds)
+        vignetteView.translatesAutoresizingMaskIntoConstraints = false
+        vignetteView.isUserInteractionEnabled = false
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = vignetteView.bounds
+        
+        gradientLayer.colors = [
+            UIColor.black.withAlphaComponent(0.7).cgColor,
+            UIColor.clear.cgColor,
+            UIColor.clear.cgColor,
+            UIColor.black.withAlphaComponent(0.7).cgColor
+        ]
+        
+        gradientLayer.locations = [0.0, 0.2, 0.8, 1.0]
+        
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        
+        vignetteView.layer.addSublayer(gradientLayer)
+        
+        return vignetteView
+    }
+
+    
+    func quitToTitleAlert() {
+            let alertController = UIAlertController(
+                title: "Kembali ke beranda?",
+                message: "Progessmu tidak akan disimpan dan akan kehilangan kemajuan saat ini. Tetap kembali ke beranda?",
+                preferredStyle: .alert
+            )
+
+                let quitAction = UIAlertAction(title: "Ya", style: .default) { _ in
+                    self.quitToTitle()
+            }
+            alertController.addAction(quitAction)
+
+            let cancelAction = UIAlertAction(title: "Batal", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+
+            self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func quitToTitle() {
+        //TODO: Deprecated, this was a hotfix
+        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+                self.soundManager.stopDialogueSound()
+                self.soundManager.stopBackgroundSound()
+                let letsReadViewController = LetsReadViewController()
+                letsReadViewController.modalPresentationStyle = .fullScreen
+                
+                window.rootViewController = letsReadViewController
+                
+                UIView.transition(with: window, duration: 0.5, options: .transitionCurlUp, animations: nil, completion: nil)
+            } else {
+                print("No key window found")
+            }
     }
     
     private func setupViewModel() {
@@ -157,13 +245,23 @@ class StorybookViewController: UIViewController, SoundDelegate {
         
         view.addSubview(newBackground)
         
-        if page < bookDetail.totalPage {
+        if page <= bookDetail.totalPage {
             setupNextPageButton()
         }
         
         loadImage()
 
         soundStoryState = .continueStory
+        
+        if let vignette = vignetteOverlay {
+            view.bringSubviewToFront(vignette)
+        }
+        if let button = homeButton {
+            view.bringSubviewToFront(button)
+        }
+        if let button = nextButton {
+            view.bringSubviewToFront(button)
+        }
     }
     
     private func loadImage() {
@@ -242,6 +340,8 @@ class StorybookViewController: UIViewController, SoundDelegate {
     private func setupNextPageButton() {
         let buttonNextPage = NextButtonComponent()
         buttonNextPage.addTarget(self, action: #selector(nextPageTapped), for: .touchUpInside)
+        
+        nextButton = buttonNextPage
         
         view.addSubview(buttonNextPage)
         
@@ -349,15 +449,28 @@ extension StorybookViewController {
     @objc 
     private func nextPageTapped() {
         if let parent = self.presentingViewController as? BookViewController {
-//             // Memicu method nextPage di BookViewController
-            
-            if ((delegate?.didRequestNextPage()) != nil) {
-                soundManager.stopBackgroundSound()
-                soundManager.stopDialogueSound()
-                dismiss(animated: true, completion: nil)
-                parent.nextPage()
+                if let bookDelegate = delegate {
+                    if bookDelegate.didRequestNextPage(totalPage: bookDetail.totalPage){
+                        // Move to the next page
+                        soundManager.stopBackgroundSound()
+                        soundManager.stopDialogueSound()
+                        dismiss(animated: true) {
+                            parent.nextPage()
+                        }
+                    } else {
+                        // Present the end screen
+                        soundManager.stopDialogueSound()
+                        soundManager.stopBackgroundSound()
+                        dismiss(animated: true) { [weak self] in
+                            parent.presentEndScreen {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                                    self?.quitToTitle()
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        }
     }
     
     @objc 
@@ -380,7 +493,6 @@ extension StorybookViewController {
                 if let overlay = overlay {
                     view.addSubview(overlay)
                     
-                    // Add constraints to cover the entire view
                     NSLayoutConstraint.activate([
                         overlay.topAnchor.constraint(equalTo: view.topAnchor),
                         overlay.leadingAnchor.constraint(equalTo: view.leadingAnchor),

@@ -79,6 +79,14 @@ class ScanningViewController: UIViewController {
             )
         }
         label.font = customFont
+        
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOffset = CGSize(width: 0, height: 1)
+        label.layer.shadowOpacity = 0.8
+        label.layer.shadowRadius = 8
+
+        label.layer.shouldRasterize = true
+        label.layer.rasterizationScale = UIScreen.main.scale
         return label
     }()
     
@@ -141,22 +149,18 @@ class ScanningViewController: UIViewController {
     
     
     private func setupConstraintInitial() {
-       
-        
         NSLayoutConstraint.activate([
             dummyButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 519),
             dummyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 400),
             dummyButton.widthAnchor.constraint(equalToConstant: 213),
             dummyButton.heightAnchor.constraint(equalToConstant: 48),
         ])
-        
-        
     }
     
     private func setupConstraintScan() {
         
         NSLayoutConstraint.activate([
-            promptLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 144),
+            promptLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 122),
             promptLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             promptLabel.heightAnchor.constraint(equalToConstant: 64),
             promptLabel.widthAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: 0.5)
@@ -164,8 +168,8 @@ class ScanningViewController: UIViewController {
         NSLayoutConstraint.activate([
             cameraView.topAnchor.constraint(equalTo: promptLabel.bottomAnchor, constant: 20),
             cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cameraView.widthAnchor.constraint(equalToConstant: 843),
-            cameraView.heightAnchor.constraint(equalToConstant: 490)
+            cameraView.widthAnchor.constraint(equalToConstant: 640),
+            cameraView.heightAnchor.constraint(equalToConstant: 480)
         ])
     }
     
@@ -204,7 +208,11 @@ class ScanningViewController: UIViewController {
         
         func resizePreviewLayer() {
             videoHandler.previewLayer?.frame = cameraView.bounds
+            videoHandler.previewLayer?.cornerRadius = 30
+            videoHandler.previewLayer?.masksToBounds = true
+            cameraView.layer.masksToBounds = true
         }
+    
 }
 
 extension ScanningViewController: VideoHandlerDelegate {

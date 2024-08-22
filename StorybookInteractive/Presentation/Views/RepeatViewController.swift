@@ -32,6 +32,14 @@ class RepeatViewController: UIViewController {
         }
         label.font = customFont
         
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOffset = CGSize(width: 0, height: 1)
+        label.layer.shadowOpacity = 0.8
+        label.layer.shadowRadius = 8
+
+        label.layer.shouldRasterize = true
+        label.layer.rasterizationScale = UIScreen.main.scale
+        
         return label
     }()
     
@@ -75,6 +83,14 @@ class RepeatViewController: UIViewController {
         label.font = customFont
         label.textColor = .white
         label.text = "Hebat!"
+        
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOffset = CGSize(width: 0, height: 1)
+        label.layer.shadowOpacity = 0.8
+        label.layer.shadowRadius = 8
+
+        label.layer.shouldRasterize = true
+        label.layer.rasterizationScale = UIScreen.main.scale
         
         baseView.addSubview(starLeft)
         baseView.addSubview(label)
@@ -179,26 +195,26 @@ class RepeatViewController: UIViewController {
             backgroundTouchArea.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         
-        NSLayoutConstraint.activate([
-            closeLabel.topAnchor.constraint(equalTo: cardImage.bottomAnchor, constant: 16),
-            closeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        
 //        NSLayoutConstraint.activate([
 //            cardButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
 //            cardButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
 //        ])
         
         NSLayoutConstraint.activate([
-            appraisalLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 111),
+            appraisalLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
             appraisalLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             appraisalLabel.widthAnchor.constraint(equalToConstant: 473),
             appraisalLabel.heightAnchor.constraint(equalToConstant: 71),
         ])
         
         NSLayoutConstraint.activate([
-            cardImage.topAnchor.constraint(equalTo: appraisalLabel.topAnchor, constant: 40),
+            cardImage.topAnchor.constraint(equalTo: appraisalLabel.topAnchor),
             cardImage.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            closeLabel.topAnchor.constraint(equalTo: cardImage.bottomAnchor, constant: 16),
+            closeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }
