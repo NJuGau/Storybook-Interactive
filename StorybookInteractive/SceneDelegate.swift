@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
 //         window?.rootViewController = SampleViewController()
-        window?.rootViewController = BookViewController()
+        window?.rootViewController = LetsReadViewController()
         //        window?.rootViewController = StorybookViewController(bookId: "37bff686-7d09-4e53-aa90-fb465da131b5", page: 7)
         window?.makeKeyAndVisible()
     }
