@@ -15,4 +15,5 @@ struct ObjectImage: Codable {
     let isScan: Bool
     let padding: Padding
     let size: Size
+    let wordTruncationSound: String
 }

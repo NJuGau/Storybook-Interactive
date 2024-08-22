@@ -9,6 +9,10 @@ import UIKit
 import AVFAudio
 
 class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate, SoundDelegate {
+    func setAndPlayScanGuidanceSound() {
+        
+    }
+    
     func didPressCloseDelegate(_ controller: RepeatViewController) {
         removeRepeatView()
     }

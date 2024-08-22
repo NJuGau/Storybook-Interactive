@@ -11,4 +11,5 @@ struct Background: Codable {
     let id, bookId: String
     let image: String
     let page: Int
+    let backgroundSound: String
 }
