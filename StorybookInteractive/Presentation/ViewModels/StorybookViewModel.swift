@@ -102,7 +102,7 @@ internal final class StorybookViewModel {
         return images
     }
     
-    func getScanCardForByPage(bookId: String, page: Int) -> StoryScan {
+    func getScanCardForByPage() -> StoryScan {
         let request = StoryScanRequest(bookId: bookId, page: page)
         let result = storyScanUsecase.fetchScanCardByBookIdAndPage(req: request)
         

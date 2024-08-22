@@ -10,13 +10,13 @@ import UIKit
 
 
 protocol StorybookViewControllerDelegate: AnyObject {
-    func didRequestNextPage()
+    func didRequestNextPage() -> Bool
     func didRequestCurrentPageNumber() -> Int
 }
 
 class StorybookViewController: UIViewController {
     
-    var page = 7
+    var page = 1
     var bookId = "37bff686-7d09-4e53-aa90-fb465da131b5"
 
     weak var delegate: StorybookViewControllerDelegate?
@@ -29,6 +29,7 @@ class StorybookViewController: UIViewController {
     private var images: [ObjectImage] = []
     private var imageScan: [ObjectImage] = []
     private var backgroundImage: [Background] = []
+    private var scanImage: StoryScan!
     private var bookDetail: Book!
     private var isScan = false
     
@@ -51,15 +52,15 @@ class StorybookViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("check page", page)
         // SETUP VIEW MODEL
         setupViewModel()
         
         loadPage()
         
-        // ADD TAP GESTURE
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeBackgroundImage))
-        view.addGestureRecognizer(tapGesture)
+//        // ADD TAP GESTURE
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeBackgroundImage))
+//        view.addGestureRecognizer(tapGesture)
     }
     
     private func loadPage(){
@@ -102,6 +103,8 @@ class StorybookViewController: UIViewController {
         images = viewModel.loadImage()
         imageScan = viewModel.loadScanableImage()
         backgroundImage = viewModel.loadBackgroundImages()
+        scanImage = viewModel.getScanCardForByPage()
+        print(scanImage)
     }
     
     private func loadImageAfterScan() {
@@ -130,6 +133,22 @@ class StorybookViewController: UIViewController {
                 label.heightAnchor.constraint(equalToConstant: 50)
             ])
         }
+                
+        self.background.removeFromSuperview()
+//        self.storyLabel.removeFromSuperview()
+        
+        let newBackground = BackgroundViewComponent(image: UIImage(named: backgroundImage[1].image)!, frame: view.bounds)
+        
+        view.addSubview(newBackground)
+        
+        if page < bookDetail.totalPage {
+            setupNextPageButton()
+        }
+        
+        loadImage()
+        
+//        self.addStoryText(text: stories[1].text)
+
     }
     
     private func loadImage() {
@@ -234,7 +253,7 @@ extension StorybookViewController {
 // HELPER ACTION SELECTOR GESTURE
 extension StorybookViewController {
     @objc
-    private func changeBackgroundImage() {
+    func changeBackgroundImage() {
         self.background.removeFromSuperview()
 //        self.storyLabel.removeFromSuperview()
         
@@ -256,9 +275,10 @@ extension StorybookViewController {
         if let parent = self.presentingViewController as? BookViewController {
 //             // Memicu method nextPage di BookViewController
             
-            delegate?.didRequestNextPage()
-            dismiss(animated: true, completion: nil)
-            parent.nextPage()
+            if ((delegate?.didRequestNextPage()) != nil) {
+                dismiss(animated: true, completion: nil)
+                parent.nextPage()
+            }
         }
     }
 
@@ -337,8 +357,7 @@ extension StorybookViewController {
 extension StorybookViewController: ScanningDelegate {
     func setupScanView() {
         if let currentPageNumber: Int = delegate?.didRequestCurrentPageNumber() {
-            let prompt = viewModel.getScanCardForByPage(bookId: bookId, page: currentPageNumber)
-            scanningView = ScanningViewController(promptText: prompt.scanCard)
+            scanningView = ScanningViewController(promptText: scanImage.scanCard)
             scanningView?.delegate = self
             view.addSubview(scanningView?.view ?? UIView())
         }
@@ -346,10 +365,9 @@ extension StorybookViewController: ScanningDelegate {
     
     func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String) {
         if let currentPageNumber: Int = delegate?.didRequestCurrentPageNumber() {
-            let prompt = viewModel.getScanCardForByPage(bookId: bookId, page: currentPageNumber)
-            if prompt.scanCard == identifier {
+            if scanImage.scanCard == identifier {
                 removeScanningView()
-                setupRepeatView(cardImageName: prompt.scanCard)
+                setupRepeatView(cardImageName: scanImage.scanCard)
             }
         }
     }
