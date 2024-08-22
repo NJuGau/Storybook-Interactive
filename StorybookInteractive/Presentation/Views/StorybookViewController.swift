@@ -327,7 +327,6 @@ class StorybookViewController: UIViewController, SoundDelegate {
                 setupScanView()
                 soundStoryState = .idle
             case .cardResult:
-                soundStoryState = .idle
                 setAndPlayDialogueSound(soundName: storyScanCard!.wordTruncationSound)
             case .continueStory:
                 for item in listInteractiveObject {
@@ -591,9 +590,11 @@ extension StorybookViewController: ScanningDelegate {
 extension StorybookViewController: RepeatDelegate {
     
     func didPressCloseDelegate(_ controller: RepeatViewController) {
-        soundManager.stopDialogueSound()
-        removeRepeatView()
-        loadImageAndSoundAfterScan()
+        if soundStoryState == .cardResult {
+            soundManager.stopDialogueSound()
+            removeRepeatView()
+            loadImageAndSoundAfterScan()
+        }
     }
     
     func didPressCardDelegate(_ controller: RepeatViewController) {
@@ -611,16 +612,9 @@ extension StorybookViewController: RepeatDelegate {
     
     func removeRepeatView() {
         DispatchQueue.main.async { [weak self] in
-                guard let strongSelf = self else { return }
-                // Remove the view
-                strongSelf.repeatView?.view.removeFromSuperview()
-                strongSelf.repeatView = nil
-                
-                // Force layout update
-                strongSelf.view.setNeedsLayout()
-                strongSelf.view.layoutIfNeeded()
-                
-            }
+            self?.repeatView?.view.removeFromSuperview()
+            self?.repeatView = nil
+        }
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
