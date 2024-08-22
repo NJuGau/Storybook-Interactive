@@ -247,10 +247,6 @@ class StorybookViewController: UIViewController, SoundDelegate {
         
         view.addSubview(newBackground)
         
-        if page <= bookDetail.totalPage {
-            setupNextPageButton()
-        }
-        
         loadImage()
 
         soundStoryState = .continueStory
@@ -339,6 +335,9 @@ class StorybookViewController: UIViewController, SoundDelegate {
                 }
                 isInteractable = true
                 soundStoryState = .idle
+                if page <= bookDetail.totalPage {
+                    setupNextPageButton()
+                }
             default:
                 soundStoryState = .idle
         }
@@ -457,21 +456,6 @@ extension StorybookViewController {
 
 // HELPER ACTION SELECTOR GESTURE
 extension StorybookViewController {
-    @objc
-    func changeBackgroundImage() {
-        self.background.removeFromSuperview()
-        
-        let newBackground = BackgroundViewComponent(image: UIImage(named: backgroundImage[1].image)!, frame: view.bounds)
-        
-        view.addSubview(newBackground)
-        
-        if page < bookDetail.totalPage {
-            setupNextPageButton()
-        }
-        
-        loadImage()
-    }
-    
     @objc 
     private func nextPageTapped() {
         if let parent = self.presentingViewController as? BookViewController {
