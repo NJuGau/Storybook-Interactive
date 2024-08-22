@@ -11,7 +11,6 @@ struct Story: Codable {
     let id, bookId: String
     let page: Int
     let text: String
-    let isBeforeScan: Bool
     let padding: Padding
     let size: Size
 }

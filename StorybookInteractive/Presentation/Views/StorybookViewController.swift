@@ -60,17 +60,8 @@ class StorybookViewController: UIViewController {
 
         loadPage()
         
-        // Load story text
-        for story in stories {
-            if story.isBeforeScan {
-                createStoryTextLabel(data: story)
-            }
-        }
-        
-        
-//        // ADD TAP GESTURE
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeBackgroundImage))
-//        view.addGestureRecognizer(tapGesture)
+        // LOAD STORY TEXT BEFORE SCAN
+        createStoryTextLabel(data: stories[0])        
     }
     
     private func loadPage(){
