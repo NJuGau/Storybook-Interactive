@@ -157,7 +157,7 @@
         "page": 2,
         "name": "Bebek",
         "image": "DuckFamily",
-        "isScan": true,
+        "isScan": false,
         "padding": {
             "top": 400,
             "bottom": 0,
@@ -176,7 +176,7 @@
         "page": 2,
         "name": "Bebek",
         "image": "Duck2",
-        "isScan": true,
+        "isScan": false,
         "padding": {
             "top": 600,
             "bottom": 0,
@@ -193,7 +193,7 @@
         "id": "43674cc1-2df0-45f5-ae00-a8d928dec39f",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 2,
-        "name": "Orang",
+        "name": "Anak",
         "image": "KidCharacter1",
         "isScan": false,
         "padding": {
@@ -592,7 +592,7 @@
         "id": "80cc0d6f-ec55-4ab4-86d1-7cbf6cd05000",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 7,
-        "name": "Orang",
+        "name": "Anak",
         "image": "KidCharacter12",
         "isScan": false,
         "padding": {

@@ -68,13 +68,9 @@ class StorybookViewController: UIViewController, SoundDelegate {
         // SETUP VIEW MODEL
         setupViewModel()
         
-        
-        
-        
         loadPage()
+
         home()
-        // LOAD STORY TEXT BEFORE SCAN
-//        createStoryTextLabel(data: stories[0])        
     }
     
     private func loadPage(){
@@ -86,11 +82,6 @@ class StorybookViewController: UIViewController, SoundDelegate {
         soundManager.delegate = self
         setAndPlayBackgroundSound(backgroundSound: backgroundImage[0].backgroundSound)
         soundStoryState = .openingStory
-        
-        // LOAD IMAGE AFTER SCAN
-        
-        // SCAN FLASH CARD
-//        setupScanView()
     }
     
     private func home() {
@@ -161,7 +152,6 @@ class StorybookViewController: UIViewController, SoundDelegate {
         }
                 
         self.background.removeFromSuperview()
-//        self.storyLabel.removeFromSuperview()
         
         let newBackground = BackgroundViewComponent(image: UIImage(named: backgroundImage[1].image)!, frame: view.bounds)
         
@@ -172,8 +162,6 @@ class StorybookViewController: UIViewController, SoundDelegate {
         }
         
         loadImage()
-        
-//        self.addStoryText(text: stories[1].text)
 
         soundStoryState = .continueStory
     }
@@ -221,12 +209,14 @@ class StorybookViewController: UIViewController, SoundDelegate {
         switch soundStoryState {
             case .openingStory:
                 setAndPlayDialogueSound(soundName: stories[0].voiceOverSound)
+                createStoryTextLabel(data: stories[0])
             case .scanGuidance:
                 setAndPlayDialogueSound(soundName: storyScanCard!.scanGuidanceSound)
             case .cardResult:
                 setAndPlayDialogueSound(soundName: SoundPath.feedbackHebat)
             case .continueStory:
                 setAndPlayDialogueSound(soundName: stories[1].voiceOverSound)
+                createStoryTextLabel(data: stories[1])
             case .interactiveObject:
             setAndPlayDialogueSound(soundName: "Word Truncation - \(imageLabel ?? "")") // TODO: akses object yang di klik
             case .idle:
@@ -318,11 +308,12 @@ extension StorybookViewController {
         storyLabel.adjustsFontSizeToFitWidth = true
         
         view.addSubview(storyLabel)
-
+        
         NSLayoutConstraint.activate([
             storyLabel.widthAnchor.constraint(equalToConstant: data.size.width),
             storyLabel.heightAnchor.constraint(equalToConstant: data.size.height),
-            storyLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: data.padding.left),            storyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: data.padding.top),
+            storyLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: data.padding.left),
+            storyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: data.padding.top),
         ])
     }
     
@@ -343,7 +334,6 @@ extension StorybookViewController {
     @objc
     func changeBackgroundImage() {
         self.background.removeFromSuperview()
-//        self.storyLabel.removeFromSuperview()
         
         let newBackground = BackgroundViewComponent(image: UIImage(named: backgroundImage[1].image)!, frame: view.bounds)
         
@@ -354,8 +344,6 @@ extension StorybookViewController {
         }
         
         loadImage()
-        
-//        self.addStoryText(text: stories[1].text)
     }
     
     @objc 

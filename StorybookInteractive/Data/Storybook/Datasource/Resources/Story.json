@@ -22,14 +22,14 @@
         "page": 1,
         "text": "Di pagi hari yang cerah, terdengar kicau burung riang di udara.\n\nHiduplah seorang anak bernama Jose yang senang berjalan-jalan menyusuri danau.",
         "padding": {
-            "top": 620,
+            "top": 550,
             "bottom": 0,
             "left": 300,
             "right": 0
         },
         "size": {
             "width": 459,
-            "height": 56
+            "height": 140
         },
         "voiceOverSound": "[Audio] Scene 1 - 2"
     },
@@ -39,13 +39,13 @@
         "page": 2,
         "text": "Suatu pagi, Jose melihat seekor bebek kecil termenung sendirian, dijauhi oleh bebek lain.",
         "padding": {
-            "top": 620,
+            "top": 50,
             "bottom": 0,
             "left": 300,
             "right": 0
         },
         "size": {
-            "width": 459,
+            "width": 478,
             "height": 56
         },
         "voiceOverSound": "[Audio] Scene 2 - 1"
@@ -56,14 +56,14 @@
         "page": 2,
         "text": "Suatu pagi, Jose melihat seekor bebek kecil termenung sendirian, dijauhi oleh bebek lain.\n\nJose mendekati bebek itu dan berkata, \"Hai bebek kecil, kamu butuh teman?\"",
         "padding": {
-            "top": 620,
+            "top": 50,
             "bottom": 0,
             "left": 300,
             "right": 0
         },
         "size": {
             "width": 459,
-            "height": 56
+            "height": 140
         },
         "voiceOverSound": "[Audio] Scene 2 - 2"
     },
@@ -73,14 +73,14 @@
         "page": 3,
         "text": "Jose mendekati bebek kecil itu dengan hati-hati. \"Jangan khawatir, aku akan menjadi temanmu,\" katanya sambil memberi roti.",
         "padding": {
-            "top": 620,
+            "top": 80,
             "bottom": 0,
-            "left": 300,
+            "left": 100,
             "right": 0
         },
         "size": {
-            "width": 459,
-            "height": 56
+            "width": 521,
+            "height": 84
         },
         "voiceOverSound": "[Audio] Scene 3 - 1"
     },
@@ -90,14 +90,14 @@
         "page": 3,
         "text": "Jose mendekati bebek kecil itu dengan hati-hati. \"Jangan khawatir, aku akan menjadi temanmu,\" katanya sambil memberi roti.\n\nBebek kecil itu mulai makan perlahan, merasa nyaman untuk pertama kali.",
         "padding": {
-            "top": 620,
+            "top": 80,
             "bottom": 0,
-            "left": 300,
+            "left": 100,
             "right": 0
         },
         "size": {
-            "width": 459,
-            "height": 56
+            "width": 521,
+            "height": 168
         },
         "voiceOverSound": "[Audio] Scene 3 - 2"
     },
@@ -107,13 +107,13 @@
         "page": 4,
         "text": "Jose melewati ladang bunga, dan membawa bebek kecil itu pulang.",
         "padding": {
-            "top": 620,
+            "top": 70,
             "bottom": 0,
-            "left": 300,
+            "left": 350,
             "right": 0
         },
         "size": {
-            "width": 459,
+            "width": 544,
             "height": 56
         },
         "voiceOverSound": "[Audio] Scene 4 - 1"
@@ -124,14 +124,14 @@
         "page": 4,
         "text": "Jose melewati ladang bunga, dan membawa bebek kecil itu pulang.\n\n\"Di rumahku, kamu akan aman dan hangat,\" katanya, lalu mengangkat bebek kecil dan berjalan pulang.",
         "padding": {
-            "top": 620,
+            "top": 70,
             "bottom": 0,
-            "left": 300,
+            "left": 350,
             "right": 0
         },
         "size": {
-            "width": 459,
-            "height": 56
+            "width": 544,
+            "height": 140
         },
         "voiceOverSound": "[Audio] Scene 4 - 2"
     },
@@ -141,13 +141,13 @@
         "page": 5,
         "text": "Di rumah, Jose menyiapkan bantal hangat.",
         "padding": {
-            "top": 620,
+            "top": 70,
             "bottom": 0,
-            "left": 300,
+            "left": 650,
             "right": 0
         },
         "size": {
-            "width": 459,
+            "width": 340,
             "height": 56
         },
         "voiceOverSound": "[Audio] Scene 5 - 1"
@@ -158,14 +158,14 @@
         "page": 5,
         "text": "Di rumah, Jose menyiapkan bantal hangat.\n\nSetiap hari, ia merawat bebek kecil itu dan membersihkan bulunya. Jose senang melihat sahabat barunya tumbuh kuat.",
         "padding": {
-            "top": 620,
+            "top": 70,
             "bottom": 0,
-            "left": 300,
+            "left": 650,
             "right": 0
         },
         "size": {
-            "width": 459,
-            "height": 56
+            "width": 340,
+            "height": 196
         },
         "voiceOverSound": "[Audio] Scene 5 - 2"
     },
@@ -175,14 +175,14 @@
         "page": 6,
         "text": "Beberapa minggu kemudian, Jose terkejut melihat bulu bebek kecil berubah menjadi indah dan berkilau.",
         "padding": {
-            "top": 620,
+            "top": 100,
             "bottom": 0,
-            "left": 300,
+            "left": 650,
             "right": 0
         },
         "size": {
-            "width": 459,
-            "height": 56
+            "width": 369,
+            "height": 84
         },
         "voiceOverSound": "[Audio] Scene 6 - 1"
     },
@@ -192,14 +192,14 @@
         "page": 6,
         "text": "Beberapa minggu kemudian, Jose terkejut melihat bulu bebek kecil berubah menjadi indah dan berkilau.\n\nBebek itu telah menjadi angsa berbulu putih yang cantik, kini kuat dan percaya diri.",
         "padding": {
-            "top": 620,
+            "top": 100,
             "bottom": 0,
-            "left": 300,
+            "left": 650,
             "right": 0
         },
         "size": {
-            "width": 459,
-            "height": 56
+            "width": 369,
+            "height": 196
         },
         "voiceOverSound": "[Audio] Scene 6 - 2"
     },
@@ -209,13 +209,13 @@
         "page": 7,
         "text": "Di bawah sinar matahari, Jose dan angsa itu bermain dengan gembira.",
         "padding": {
-            "top": 620,
+            "top": 50,
             "bottom": 0,
-            "left": 300,
+            "left": 375,
             "right": 0
         },
         "size": {
-            "width": 459,
+            "width": 438,
             "height": 56
         },
         "voiceOverSound": "[Audio] Scene 7 - 1"
@@ -226,14 +226,14 @@
         "page": 7,
         "text": "Di bawah sinar matahari, Jose dan angsa itu bermain dengan gembira.\n\nMeski kini lebih indah, angsa itu tetap tinggal dengan Jose karena tahu dia adalah sahabat sejatinya.",
         "padding": {
-            "top": 620,
+            "top": 50,
             "bottom": 0,
-            "left": 300,
+            "left": 375,
             "right": 0
         },
         "size": {
-            "width": 459,
-            "height": 56
+            "width": 438,
+            "height": 168
         },
         "voiceOverSound": "[Audio] Scene 7 - 2"
     }
