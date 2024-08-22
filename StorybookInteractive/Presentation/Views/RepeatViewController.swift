@@ -117,9 +117,7 @@ class RepeatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(backgroundTouchArea)
-//        view.addSubview(cardButton)
         view.addSubview(appraisalLabel)
-        view.addSubview(cardButton)
         view.addSubview(cardImage)
         view.addSubview(closeLabel)
         
@@ -127,11 +125,19 @@ class RepeatViewController: UIViewController {
         backgroundTouchArea.addGestureRecognizer(completeGesture)
         
         //TODO: Bugged click
-        let repeatGesture = UITapGestureRecognizer(target: self, action: #selector(onCardPress(_:)))
-        cardButton.addGestureRecognizer(repeatGesture)
+//        let repeatGesture = UITapGestureRecognizer(target: self, action: #selector(onCardPress(_:)))
+//        cardButton.addGestureRecognizer(repeatGesture)
         
         setupConstraint()
+        animateCloseLabelBlinking()
+        
+        cardImage.frame.origin.y = view.frame.height
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            animateCardImageSwipeUp()
+        }
     
     @objc
     private func onCompletePress(_ sender: UITapGestureRecognizer) {
@@ -141,6 +147,28 @@ class RepeatViewController: UIViewController {
     @objc
     private func onCardPress(_ sender: UITapGestureRecognizer) {
         delegate?.didPressCardDelegate(self)
+    }
+    
+    private func animateCloseLabelBlinking() {
+        UIView.animate(withDuration: 0.8,
+                       delay: 0.0,
+                       options: [.repeat, .autoreverse],
+                       animations: {
+            self.closeLabel.alpha = 0.0
+        }, completion: { _ in
+            self.closeLabel.alpha = 1.0
+        })
+    }
+    
+    private func animateCardImageSwipeUp() {
+        UIView.animate(withDuration: 0.8,
+                           delay: 0.0,
+                           usingSpringWithDamping: 0.8,
+                           initialSpringVelocity: 0.5,
+                           options: .curveEaseOut,
+                           animations: {
+            self.cardImage.frame.origin.y = 230
+        }, completion: nil)
     }
     
     private func setupConstraint() {

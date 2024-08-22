@@ -61,7 +61,7 @@ class StorybookViewController: UIViewController {
         loadPage()
         
         // LOAD STORY TEXT BEFORE SCAN
-        createStoryTextLabel(data: stories[0])        
+//        createStoryTextLabel(data: stories[0])        
     }
     
     private func loadPage(){
@@ -201,7 +201,7 @@ extension StorybookViewController {
             image.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         }, completion: nil)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             image.layer.removeAllAnimations()
             image.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
@@ -396,7 +396,6 @@ extension StorybookViewController: ScanningDelegate {
 extension StorybookViewController: RepeatDelegate {
     
     func didPressCloseDelegate(_ controller: RepeatViewController) {
-        print("touch close")
         // TODO: implement stop dialogue sound if any
         removeRepeatView()
         loadImageAfterScan()
@@ -404,7 +403,6 @@ extension StorybookViewController: RepeatDelegate {
     
     func didPressCardDelegate(_ controller: RepeatViewController) {
         // TODO: implement repeat sound for cards
-        print("touch repeat")
     }
     
     func setupRepeatView(cardImageName: String) {

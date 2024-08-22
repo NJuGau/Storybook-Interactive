@@ -26,6 +26,7 @@ class ScanningViewController: UIViewController {
             checkState()
         }
     }
+    
     var promptText: String = ""
 
     private let cameraView: UIView = {
