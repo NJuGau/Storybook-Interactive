@@ -22,7 +22,7 @@ targets:
                     UIWindowSceneSessionRoleApplication:
                       - UISceneConfigurationName: "Default Configuration"
                         UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
-            UIAppFont:
+            UIAppFonts:
               - LibreBodoni-Italic-VariableFont_wght.ttf
               - LibreBodoni-VariableFont_wght.ttf
               - Nunito-VariableFont_wght.ttf
