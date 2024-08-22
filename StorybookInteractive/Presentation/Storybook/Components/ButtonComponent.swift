@@ -9,7 +9,28 @@ import UIKit
 
 class ButtonComponent: UIButton {
     
+        let homeButton: UIButton = {
+            let homeButton = UIButton()
+            let image = UIImage(systemName: "house.fill")
 
+            homeButton.backgroundColor = UIColor(red: 0.93, green: 0.96, blue: 0.88, alpha: 1)
+            homeButton.setImage(image, for: .normal)
+            homeButton.tintColor = UIColor(red: 0.41, green: 0.53, blue: 0.45, alpha: 1)
+            homeButton.frame = CGRect(x: 28, y: 40, width: 69, height: 69)
+            homeButton.layer.cornerRadius = 69 / 2
+            homeButton.clipsToBounds = true
+            
+            return homeButton
+            
+        
+        }()
+    
+    
+    @objc func buttonTapped() {
+            print("Circle button tapped!")
+        }
+
+    
 }
 
 extension UIImage {

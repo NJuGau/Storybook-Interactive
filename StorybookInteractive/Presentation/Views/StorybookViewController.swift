@@ -69,9 +69,10 @@ class StorybookViewController: UIViewController, SoundDelegate {
         setupViewModel()
         
         
-
-        loadPage()
         
+        
+        loadPage()
+        home()
         // LOAD STORY TEXT BEFORE SCAN
 //        createStoryTextLabel(data: stories[0])        
     }
@@ -88,6 +89,21 @@ class StorybookViewController: UIViewController, SoundDelegate {
         
         // LOAD IMAGE AFTER SCAN
         
+        // SCAN FLASH CARD
+//        setupScanView()
+    }
+    
+    private func home() {
+        let homeButton = ButtonComponent().homeButton
+    
+        view.addSubview(homeButton)
+        
+        NSLayoutConstraint.activate([
+            homeButton.widthAnchor.constraint(equalToConstant: 69),
+            homeButton.heightAnchor.constraint(equalToConstant: 69),
+            homeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 43),
+            homeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32),
+        ])
     }
     
     private func setupViewModel() {
