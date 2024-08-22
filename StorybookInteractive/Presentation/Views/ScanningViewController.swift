@@ -14,6 +14,7 @@ enum ScanState {
 
 protocol ScanningDelegate {
     func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String)
+    func setAndPlayScanGuidanceSound()
 }
 
 class ScanningViewController: UIViewController {
@@ -26,6 +27,7 @@ class ScanningViewController: UIViewController {
             checkState()
         }
     }
+    
     var promptText: String = ""
 
     private let cameraView: UIView = {
@@ -114,6 +116,7 @@ class ScanningViewController: UIViewController {
             
             setupModel()
             setupConstraintInitial()
+            delegate?.setAndPlayScanGuidanceSound()
         case .scan:
             dummyButton.isHidden = true
             view.addSubview(cameraView)
@@ -230,7 +233,7 @@ extension ScanningViewController {
             }
             
             //check if it werent non-classified
-            if result.confidence > 0.90 && result.identifier != "NonClassified" {
+            if result.confidence > 0.99 && result.identifier != "NonClassified" {
                 print(result.identifier)
                 delegate?.didScanCompleteDelegate(self, didCaptureResult: result.identifier)
             }

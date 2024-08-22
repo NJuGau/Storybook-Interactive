@@ -7,14 +7,18 @@
 
 import Foundation
 import UIKit
+import AVFAudio
 
+enum SoundStoryState {
+    case openingStory, scanGuidance, cardResult, continueStory, interactiveObject, idle
+}
 
 protocol StorybookViewControllerDelegate: AnyObject {
     func didRequestNextPage() -> Bool
     func didRequestCurrentPageNumber() -> Int
 }
 
-class StorybookViewController: UIViewController {
+class StorybookViewController: UIViewController, SoundDelegate {
     
     var page = 1
     var bookId = "37bff686-7d09-4e53-aa90-fb465da131b5"
@@ -29,8 +33,9 @@ class StorybookViewController: UIViewController {
     private var images: [ObjectImage] = []
     private var imageScan: [ObjectImage] = []
     private var backgroundImage: [Background] = []
-    private var scanImage: StoryScan!
     private var bookDetail: Book!
+    private var storyScanCard: StoryScan?
+    private var imageLabel: String?
     private var isScan = false
     
     private var scanningView: ScanningViewController?
@@ -39,6 +44,13 @@ class StorybookViewController: UIViewController {
     private var isImageScaled = false
     private var overlay: UIView?
     private var isLabelVisible = false
+    
+    private let soundManager: SoundManager = SoundManager.shared
+    private var soundStoryState: SoundStoryState = .idle {
+        didSet {
+            checkSoundStoryState()
+        }
+    }
 
     init(bookId: String, page: Int) {
         self.bookId = bookId
@@ -70,6 +82,10 @@ class StorybookViewController: UIViewController {
         background = BackgroundViewComponent(image: UIImage(named: backgroundImage[0].image)!, frame: view.bounds)
         view.addSubview(background)
         
+        // Load background sound
+        soundManager.delegate = self
+        setAndPlayBackgroundSound(backgroundSound: backgroundImage[0].backgroundSound)
+        soundStoryState = .openingStory
         
         // LOAD IMAGE AFTER SCAN
         
@@ -88,7 +104,6 @@ class StorybookViewController: UIViewController {
             homeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 43),
             homeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32),
         ])
-
     }
     
     private func setupViewModel() {
@@ -115,10 +130,10 @@ class StorybookViewController: UIViewController {
         images = viewModel.loadImage()
         imageScan = viewModel.loadScanableImage()
         backgroundImage = viewModel.loadBackgroundImages()
-        scanImage = viewModel.getScanCardForByPage()
+        storyScanCard = viewModel.getScanCardForByPage()
     }
     
-    private func loadImageAfterScan() {
+    private func loadImageAndSoundAfterScan() {
         // INIT IMAGE
         for data in imageScan {
             let image = createImage(imageName: data.image)
@@ -160,6 +175,7 @@ class StorybookViewController: UIViewController {
         
 //        self.addStoryText(text: stories[1].text)
 
+        soundStoryState = .continueStory
     }
     
     private func loadImage() {
@@ -190,6 +206,49 @@ class StorybookViewController: UIViewController {
         }
     }
     
+    // Set up audio/sound
+    private func setAndPlayBackgroundSound(backgroundSound: String){
+        soundManager.setupBackgroundSound(soundName: backgroundSound)
+        soundManager.playBackgroundSound()
+    }
+    
+    private func setAndPlayDialogueSound(soundName: String){
+        soundManager.setupDialogueSound(soundName: soundName)
+        soundManager.playDialogueSound()
+    }
+    
+    func checkSoundStoryState() {
+        switch soundStoryState {
+            case .openingStory:
+                setAndPlayDialogueSound(soundName: stories[0].voiceOverSound)
+            case .scanGuidance:
+                setAndPlayDialogueSound(soundName: storyScanCard!.scanGuidanceSound)
+            case .cardResult:
+                setAndPlayDialogueSound(soundName: SoundPath.feedbackHebat)
+            case .continueStory:
+                setAndPlayDialogueSound(soundName: stories[1].voiceOverSound)
+            case .interactiveObject:
+            setAndPlayDialogueSound(soundName: "Word Truncation - \(imageLabel ?? "")") // TODO: akses object yang di klik
+            case .idle:
+                return
+            }
+    }
+    
+    func audioDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        switch soundStoryState {
+            case .openingStory:
+                // SCAN FLASH CARD
+                setupScanView()
+                soundStoryState = .idle
+            case .cardResult:
+                soundStoryState = .idle
+                setAndPlayDialogueSound(soundName: storyScanCard!.wordTruncationSound)
+            default:
+                soundStoryState = .idle
+        }
+       
+    }
+    
     private func setupNextPageButton() {
         let buttonNextPage = NextButtonComponent()
         buttonNextPage.addTarget(self, action: #selector(nextPageTapped), for: .touchUpInside)
@@ -201,7 +260,6 @@ class StorybookViewController: UIViewController {
          buttonNextPage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
         ])
     }
-
 }
 
 // HELPER
@@ -216,7 +274,7 @@ extension StorybookViewController {
             image.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         }, completion: nil)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             image.layer.removeAllAnimations()
             image.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
@@ -306,17 +364,24 @@ extension StorybookViewController {
 //             // Memicu method nextPage di BookViewController
             
             if ((delegate?.didRequestNextPage()) != nil) {
+                soundManager.stopBackgroundSound()
+                soundManager.stopDialogueSound()
                 dismiss(animated: true, completion: nil)
                 parent.nextPage()
             }
         }
     }
-
     
     @objc 
     private func imageTapped(_ sender: UITapGestureRecognizer) {
         guard let tappedImageView = sender.view as? UIImageView else { return }
-
+        
+        if let label = tappedImageView.subviews.first(where: { $0 is UILabel }) as? UILabel {
+            print("Label text: \(label.text ?? "No text")")
+            imageLabel = label.text
+            soundStoryState = .interactiveObject
+        }
+        
         if !isImageScaled {
             
             if overlay == nil {
@@ -385,16 +450,20 @@ extension StorybookViewController {
 
 // HELPER FOR SCAN OVERLAY VIEW
 extension StorybookViewController: ScanningDelegate {
+    func setAndPlayScanGuidanceSound() {
+        soundStoryState = .scanGuidance
+    }
+    
     func setupScanView() {
-        scanningView = ScanningViewController(promptText: scanImage.scanCard)
+        scanningView = ScanningViewController(promptText: storyScanCard!.scanCard)
         scanningView?.delegate = self
         view.addSubview(scanningView?.view ?? UIView())
     }
     
     func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String) {
-        if scanImage.scanCard == identifier {
+        if storyScanCard!.scanCard == identifier {
             removeScanningView()
-            setupRepeatView(cardImageName: scanImage.scanCard)
+            setupRepeatView(cardImageName: storyScanCard!.scanCard)
         }
     }
     
@@ -411,15 +480,13 @@ extension StorybookViewController: ScanningDelegate {
 extension StorybookViewController: RepeatDelegate {
     
     func didPressCloseDelegate(_ controller: RepeatViewController) {
-        print("touch close")
-        // TODO: implement stop dialogue sound if any
+        soundManager.stopDialogueSound()
         removeRepeatView()
-        loadImageAfterScan()
+        loadImageAndSoundAfterScan()
     }
     
     func didPressCardDelegate(_ controller: RepeatViewController) {
         // TODO: implement repeat sound for cards
-        print("touch repeat")
     }
     
     func setupRepeatView(cardImageName: String) {
@@ -427,6 +494,7 @@ extension StorybookViewController: RepeatDelegate {
             self?.repeatView = RepeatViewController(cardImageName: cardImageName)
             self?.repeatView?.delegate = self
             self?.view.addSubview(self?.repeatView?.view ?? UIView())
+            self?.soundStoryState = .cardResult
         }
     }
     

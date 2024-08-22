@@ -11,4 +11,6 @@ struct StoryScan: Codable {
     let id, bookId: String
     let page: Int
     let scanCard: String
+    let scanGuidanceSound: String
+    let wordTruncationSound: String
 }

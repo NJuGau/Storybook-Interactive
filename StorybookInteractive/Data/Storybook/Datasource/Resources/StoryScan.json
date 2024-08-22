@@ -3,42 +3,56 @@
         "id": "24414cc5-570a-45a1-a7a8-fa4d8b123c65",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 1,
-        "scanCard": "Burung"
+        "scanCard": "Burung",
+        "scanGuidanceSound": "Guidance Burung",
+        "wordTruncationSound": "Word Truncation - Burung"
     },
     {
         "id": "090748e1-5ba0-4ce7-ba23-6336d9e0fc88",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 2,
-        "scanCard": "Bebek"
+        "scanCard": "Bebek",
+        "scanGuidanceSound": "Guidance Burung",
+        "wordTruncationSound": "Word Truncation - Burung"
     },
     {
         "id": "275cf55f-3b82-4335-9e6a-5c919e99c6ee",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 3,
-        "scanCard": "Roti"
+        "scanCard": "Roti",
+        "scanGuidanceSound": "Guidance Burung",
+        "wordTruncationSound": "Word Truncation - Burung"
     },
     {
         "id": "921a65da-ac78-4eb9-93d1-bfac3dff06ae",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 4,
-        "scanCard": "Bunga"
+        "scanCard": "Bunga",
+        "scanGuidanceSound": "Guidance Burung",
+        "wordTruncationSound": "Word Truncation - Burung"
     },
     {
         "id": "45338885-8b4f-43c1-8e24-2c68dbace502",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 5,
-        "scanCard": "Bantal"
+        "scanCard": "Bantal",
+        "scanGuidanceSound": "Guidance Burung",
+        "wordTruncationSound": "Word Truncation - Burung"
     },
     {
         "id": "9bf34a69-301c-48e2-b2e9-647a93801c1c",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 6,
-        "scanCard": "Bulu"
+        "scanCard": "Bulu",
+        "scanGuidanceSound": "Guidance Burung",
+        "wordTruncationSound": "Word Truncation - Burung"
     },
     {
         "id": "e281a48a-066d-4e60-bfc9-4f57e30dcc79",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 7,
-        "scanCard": "Matahari"
+        "scanCard": "Matahari",
+        "scanGuidanceSound": "Guidance Burung",
+        "wordTruncationSound": "Word Truncation - Burung"
     }
 ]

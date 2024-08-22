@@ -3,7 +3,7 @@
         "id": "8477d79b-386f-46a3-a9f6-20891de9ff91",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 1,
-        "text": "Di suatu pagi yang cerah, kicau burung terdengar riang di udara.",
+        "text": "Di pagi hari yang cerah, terdengar kicau burung riang di udara.",
         "padding": {
             "top": 550,
             "bottom": 0,
@@ -13,13 +13,14 @@
         "size": {
             "width": 459,
             "height": 56
-        }
+        },
+        "voiceOverSound": "[Audio] Scene 1 - 1"
     },
     {
-        "id": "8477d79b-386f-46a3-a9f6-20891de9ff91",
+        "id": "e73b63a5-51d3-49ca-b936-c73f7af358c4",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 1,
-        "text": "Hiduplah seorang anak bernama Jose. Setiap pagi Jose suka berjalan-jalan menyusuri danau.",
+        "text": "Di pagi hari yang cerah, terdengar kicau burung riang di udara.\n\nHiduplah seorang anak bernama Jose yang senang berjalan-jalan menyusuri danau.",
         "padding": {
             "top": 620,
             "bottom": 0,
@@ -29,6 +30,211 @@
         "size": {
             "width": 459,
             "height": 56
-        }
+        },
+        "voiceOverSound": "[Audio] Scene 1 - 2"
+    },
+    {
+        "id": "c4498e10-2d94-4d1a-9a8e-a69682b76463",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 2,
+        "text": "Suatu pagi, Jose melihat seekor bebek kecil termenung sendirian, dijauhi oleh bebek lain.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 2 - 1"
+    },
+    {
+        "id": "3a9036e8-909e-4536-81a3-5b4a6f484192",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 2,
+        "text": "Suatu pagi, Jose melihat seekor bebek kecil termenung sendirian, dijauhi oleh bebek lain.\n\nJose mendekati bebek itu dan berkata, \"Hai bebek kecil, kamu butuh teman?\"",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 2 - 2"
+    },
+    {
+        "id": "a0db6057-b6cd-456f-bd7e-b935853e51b2",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 3,
+        "text": "Jose mendekati bebek kecil itu dengan hati-hati. \"Jangan khawatir, aku akan menjadi temanmu,\" katanya sambil memberi roti.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 3 - 1"
+    },
+    {
+        "id": "39042e4c-5c79-4e3f-b5b6-cd63a9dfd9a8",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 3,
+        "text": "Jose mendekati bebek kecil itu dengan hati-hati. \"Jangan khawatir, aku akan menjadi temanmu,\" katanya sambil memberi roti.\n\nBebek kecil itu mulai makan perlahan, merasa nyaman untuk pertama kali.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 3 - 2"
+    },
+    {
+        "id": "43ca38b3-d208-47e8-868a-2484ecab3a2a",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 4,
+        "text": "Jose melewati ladang bunga, dan membawa bebek kecil itu pulang.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 4 - 1"
+    },
+    {
+        "id": "9eee9dd5-35c4-4b7c-bff4-8700213e02eb",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 4,
+        "text": "Jose melewati ladang bunga, dan membawa bebek kecil itu pulang.\n\n\"Di rumahku, kamu akan aman dan hangat,\" katanya, lalu mengangkat bebek kecil dan berjalan pulang.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 4 - 2"
+    },
+    {
+        "id": "b231ed9f-ad20-44f6-b4cf-38ba210fa4c9",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 5,
+        "text": "Di rumah, Jose menyiapkan bantal hangat.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 5 - 1"
+    },
+    {
+        "id": "103bac38-6bc8-4989-b2b1-493b85d2dc74",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 5,
+        "text": "Di rumah, Jose menyiapkan bantal hangat.\n\nSetiap hari, ia merawat bebek kecil itu dan membersihkan bulunya. Jose senang melihat sahabat barunya tumbuh kuat.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 5 - 2"
+    },
+    {
+        "id": "f662ddb3-a2aa-4042-ad06-926ae570703e",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 6,
+        "text": "Beberapa minggu kemudian, Jose terkejut melihat bulu bebek kecil berubah menjadi indah dan berkilau.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 6 - 1"
+    },
+    {
+        "id": "34f44e67-a521-4e1a-b519-db3a52710829",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 6,
+        "text": "Beberapa minggu kemudian, Jose terkejut melihat bulu bebek kecil berubah menjadi indah dan berkilau.\n\nBebek itu telah menjadi angsa berbulu putih yang cantik, kini kuat dan percaya diri.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 6 - 2"
+    },
+    {
+        "id": "fccde20a-f92e-4870-8da3-017efc8caa01",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 7,
+        "text": "Di bawah sinar matahari, Jose dan angsa itu bermain dengan gembira.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 7 - 1"
+    },
+    {
+        "id": "5bfead71-6550-4922-9424-741bacb91d2d",
+        "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
+        "page": 7,
+        "text": "Di bawah sinar matahari, Jose dan angsa itu bermain dengan gembira.\n\nMeski kini lebih indah, angsa itu tetap tinggal dengan Jose karena tahu dia adalah sahabat sejatinya.",
+        "padding": {
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
+        },
+        "voiceOverSound": "[Audio] Scene 7 - 2"
     }
 ]

@@ -9,6 +9,10 @@ import UIKit
 import AVFAudio
 
 class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate, SoundDelegate {
+    func setAndPlayScanGuidanceSound() {
+        
+    }
+    
     func didPressCloseDelegate(_ controller: RepeatViewController) {
         removeRepeatView()
     }
@@ -40,14 +44,16 @@ class SampleViewController: UIViewController, ScanningDelegate, RepeatDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .green
-        
-
-        scanningView = ScanningViewController(promptText: "Cari Burung yuk!")
-        scanningView?.delegate = self
-        view.addSubview(scanningView?.view ?? UIView())
+//        view.backgroundColor = .green
 //        
-        soundManager.delegate = self
+//
+//        scanningView = ScanningViewController(promptText: "Cari Burung yuk!")
+//        scanningView?.delegate = self
+//        view.addSubview(scanningView?.view ?? UIView())
+////        
+//        soundManager.delegate = self
+        
+            view.addSubview(TheEndScreenViewController().view)
         
 //        soundManager.setupBackgroundSound(soundName: "SampleBackground")
 //        soundManager.setupDialogueSound(soundName: "SampleForeground")

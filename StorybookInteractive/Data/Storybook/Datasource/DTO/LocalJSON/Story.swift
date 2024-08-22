@@ -13,4 +13,5 @@ struct Story: Codable {
     let text: String
     let padding: Padding
     let size: Size
+    let voiceOverSound: String
 }
