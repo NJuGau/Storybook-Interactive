@@ -52,11 +52,21 @@ class StorybookViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("check page", page)
+
         // SETUP VIEW MODEL
         setupViewModel()
         
+        
+
         loadPage()
+        
+        // Load story text
+        for story in stories {
+            if story.isBeforeScan {
+                createStoryTextLabel(data: story)
+            }
+        }
+        
         
 //        // ADD TAP GESTURE
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeBackgroundImage))
@@ -71,12 +81,8 @@ class StorybookViewController: UIViewController {
         
         // LOAD IMAGE AFTER SCAN
         
-        // Load story text
-//        storyTextBeforeScan(text: stories[0].text)
-        
         // SCAN FLASH CARD
         setupScanView()
-
     }
     
     private func setupViewModel() {
@@ -104,7 +110,6 @@ class StorybookViewController: UIViewController {
         imageScan = viewModel.loadScanableImage()
         backgroundImage = viewModel.loadBackgroundImages()
         scanImage = viewModel.getScanCardForByPage()
-        print(scanImage)
     }
     
     private func loadImageAfterScan() {
@@ -221,20 +226,22 @@ extension StorybookViewController {
         return label
     }
     
-    private func createStoryTextLabel(text: String) {
+    private func createStoryTextLabel(data: Story) {
         storyLabel = UILabel()
-        storyLabel.text = text
+        storyLabel.text = data.text
         storyLabel.translatesAutoresizingMaskIntoConstraints = false
         storyLabel.numberOfLines = 0
-        storyLabel.font = UIFont.systemFont(ofSize: 28)
+        storyLabel.font = UIFont.systemFont(ofSize: 24)
         storyLabel.textColor = .black
+        storyLabel.textAlignment = .left
+        storyLabel.adjustsFontSizeToFitWidth = true
         
         view.addSubview(storyLabel)
 
         NSLayoutConstraint.activate([
-            storyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: stories[page].padding.top),
-            storyLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: stories[page].padding.left),
-            storyLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: stories[page].padding.right)
+            storyLabel.widthAnchor.constraint(equalToConstant: data.size.width),
+            storyLabel.heightAnchor.constraint(equalToConstant: data.size.height),
+            storyLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: data.padding.left),            storyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: data.padding.top),
         ])
     }
     
@@ -356,19 +363,15 @@ extension StorybookViewController {
 // HELPER FOR SCAN OVERLAY VIEW
 extension StorybookViewController: ScanningDelegate {
     func setupScanView() {
-        if let currentPageNumber: Int = delegate?.didRequestCurrentPageNumber() {
-            scanningView = ScanningViewController(promptText: scanImage.scanCard)
-            scanningView?.delegate = self
-            view.addSubview(scanningView?.view ?? UIView())
-        }
+        scanningView = ScanningViewController(promptText: scanImage.scanCard)
+        scanningView?.delegate = self
+        view.addSubview(scanningView?.view ?? UIView())
     }
     
     func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String) {
-        if let currentPageNumber: Int = delegate?.didRequestCurrentPageNumber() {
-            if scanImage.scanCard == identifier {
-                removeScanningView()
-                setupRepeatView(cardImageName: scanImage.scanCard)
-            }
+        if scanImage.scanCard == identifier {
+            removeScanningView()
+            setupRepeatView(cardImageName: scanImage.scanCard)
         }
     }
     
