@@ -20,7 +20,7 @@ class NextButtonComponent: UIButton {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 1)
         self.layer.shadowOpacity = 0.8
-        self.layer.shadowRadius = 8
+        self.layer.shadowRadius = 4
 
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale

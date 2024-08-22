@@ -94,10 +94,10 @@ class LetsReadViewController: UIViewController {
         gradientLayer.frame = vignetteView.bounds
         
         gradientLayer.colors = [
-            UIColor.black.withAlphaComponent(0.7).cgColor,
+            UIColor.black.withAlphaComponent(0.6).cgColor,
             UIColor.clear.cgColor,
             UIColor.clear.cgColor,
-            UIColor.black.withAlphaComponent(0.7).cgColor
+            UIColor.black.withAlphaComponent(0.6).cgColor
         ]
         
         gradientLayer.locations = [0.0, 0.2, 0.8, 1.0]

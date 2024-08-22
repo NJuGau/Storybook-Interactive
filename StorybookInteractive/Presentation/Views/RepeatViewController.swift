@@ -35,7 +35,7 @@ class RepeatViewController: UIViewController {
         label.layer.shadowColor = UIColor.black.cgColor
         label.layer.shadowOffset = CGSize(width: 0, height: 1)
         label.layer.shadowOpacity = 0.8
-        label.layer.shadowRadius = 8
+        label.layer.shadowRadius = 4
 
         label.layer.shouldRasterize = true
         label.layer.rasterizationScale = UIScreen.main.scale
@@ -87,7 +87,7 @@ class RepeatViewController: UIViewController {
         label.layer.shadowColor = UIColor.black.cgColor
         label.layer.shadowOffset = CGSize(width: 0, height: 1)
         label.layer.shadowOpacity = 0.8
-        label.layer.shadowRadius = 8
+        label.layer.shadowRadius = 4
 
         label.layer.shouldRasterize = true
         label.layer.rasterizationScale = UIScreen.main.scale
