@@ -22,6 +22,11 @@ targets:
                     UIWindowSceneSessionRoleApplication:
                       - UISceneConfigurationName: "Default Configuration"
                         UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+            UIAppFont:
+              - LibreBodoni-Italic-VariableFont_wght.ttf
+              - LibreBodoni-VariableFont_wght.ttf
+              - Nunito-VariableFont_wght.ttf
+              - Nunito-Italic-VariableFont_wght
     sources: [StorybookInteractive]
     resources: [Resources]
     settings:
