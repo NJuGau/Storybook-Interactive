@@ -31,17 +31,22 @@ class ScanningViewController: UIViewController {
     private let cameraView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         return view
     }()
     
     private let dummyButton: UIButton = {
         let button =  UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Start Scanning!", for: .normal)
+        button.setTitle("Mulai Cari", for: .normal)
         button.tintColor = .white
-        button.backgroundColor = .red
+        button.backgroundColor = UIColor(named: "DarkGreen600")
         
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        
+        let rotationAngle = -2 * CGFloat.pi / 180
+        button.transform = CGAffineTransform(rotationAngle: rotationAngle)
         return button
     }()
     
@@ -49,23 +54,32 @@ class ScanningViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = ""
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.backgroundColor = .white
+        
+        guard let customFont = UIFont(name: "Nunito-Bold", size: 22) else {
+            fatalError("""
+                Failed to load the "Nunito-Bold" font.
+                Make sure the font file is included in the project and the font name is spelled correctly.
+                """
+            )
+        }
+        label.font = customFont
         return label
     }()
+    
+    private var initialFrame: StartScanningOverlayViewController?
   
     private let classificationModel = try! AllCardClassifier(configuration: .init())
         
     var videoHandler: VideoHandler!
-        
     var request: VNCoreMLRequest?
     
     init(promptText: String) {
         super.init(nibName: nil, bundle: nil)
         self.promptText = promptText
-        promptLabel.text = self.promptText
+        promptLabel.text = "Pindai kartu " + self.promptText
+        initialFrame = StartScanningOverlayViewController(promptText: promptText)
     }
     
     required init?(coder: NSCoder) {
@@ -80,16 +94,19 @@ class ScanningViewController: UIViewController {
     func checkState() {
         switch scanState {
         case .initial:
-            view.addSubview(cameraView)
+            view.backgroundColor = .black.withAlphaComponent(0.7)
+            view.addSubview(initialFrame?.view ?? UIView())
             view.addSubview(dummyButton)
-            view.addSubview(promptLabel)
           
             dummyButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(startScanning(_ :))))
             
             setupModel()
-            setupConstraint()
+            setupConstraintInitial()
         case .scan:
             dummyButton.isHidden = true
+            view.addSubview(cameraView)
+            view.addSubview(promptLabel)
+            setupConstraintScan()
             setupCamera()
         case .complete:
             print("complete")
@@ -102,31 +119,38 @@ class ScanningViewController: UIViewController {
     
     @objc
     private func startScanning(_ sender: UITapGestureRecognizer) {
+        initialFrame?.view.removeFromSuperview()
+        initialFrame = nil
         scanState = .scan
     }
     
     
-    private func setupConstraint() {
-        // Setup constraints for cameraView
-        NSLayoutConstraint.activate([
-            cameraView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150), //change constant to 0 for phone
-            cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cameraView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            cameraView.heightAnchor.constraint(equalToConstant: 500)
-        ])
+    private func setupConstraintInitial() {
+       
         
         NSLayoutConstraint.activate([
-            dummyButton.centerXAnchor.constraint(equalTo: cameraView.centerXAnchor),
-            dummyButton.centerYAnchor.constraint(equalTo: cameraView.centerYAnchor),
-            dummyButton.heightAnchor.constraint(equalToConstant: 100),
-            dummyButton.widthAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: 0.5)
+            dummyButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 519),
+            dummyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 400),
+            dummyButton.widthAnchor.constraint(equalToConstant: 213),
+            dummyButton.heightAnchor.constraint(equalToConstant: 48),
         ])
         
+        
+    }
+    
+    private func setupConstraintScan() {
+        
         NSLayoutConstraint.activate([
-            promptLabel.centerXAnchor.constraint(equalTo: cameraView.centerXAnchor),
-            promptLabel.centerYAnchor.constraint(equalTo: cameraView.centerYAnchor, constant: -150),
+            promptLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 144),
+            promptLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             promptLabel.heightAnchor.constraint(equalToConstant: 64),
             promptLabel.widthAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: 0.5)
+        ])
+        NSLayoutConstraint.activate([
+            cameraView.topAnchor.constraint(equalTo: promptLabel.bottomAnchor, constant: 20),
+            cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cameraView.widthAnchor.constraint(equalToConstant: 843),
+            cameraView.heightAnchor.constraint(equalToConstant: 490)
         ])
     }
     

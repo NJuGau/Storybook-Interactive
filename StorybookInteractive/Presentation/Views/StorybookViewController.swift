@@ -399,4 +399,8 @@ extension StorybookViewController: RepeatDelegate {
                 
             }
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeRight
+    }
 }

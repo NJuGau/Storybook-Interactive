@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Nunito-VariableFont_wght.ttf</string>
+		<string>Nunito-Italic-VariableFont_wght.ttf</string>
+		<string>LibreBodoni-VariableFont_wght.ttf</string>
+		<string>LibreBodoni-Italic-VariableFont_wght.ttf</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
