@@ -31,6 +31,8 @@ class LetsReadViewController: UIViewController {
             appLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -330)
             
         ])
+        
+        setupNextPageButton()
     }
     
     private let bookTitle: UIImageView = {
@@ -55,8 +57,27 @@ class LetsReadViewController: UIViewController {
         return appLogo
     }()
 
+    private func setupNextPageButton() {
+        let buttonNextPage = NextButtonComponent()
+        buttonNextPage.addTarget(self, action: #selector(gotostorybook), for: .touchUpInside)
+        
+        view.addSubview(buttonNextPage)
+        
+        NSLayoutConstraint.activate([
+         buttonNextPage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+         buttonNextPage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+        ])
+    }
+    
+    @objc
+    private func gotostorybook() {
+        let bookController = BookViewController()
+        bookController.modalPresentationStyle = .fullScreen
+        self.present(bookController, animated: true, completion: nil)
+    }
     
 }
+
 
 #Preview {
     LetsReadViewController()
