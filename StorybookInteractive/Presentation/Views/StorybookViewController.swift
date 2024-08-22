@@ -10,13 +10,13 @@ import UIKit
 
 
 protocol StorybookViewControllerDelegate: AnyObject {
-    func didRequestNextPage()
+    func didRequestNextPage() -> Bool
     func didRequestCurrentPageNumber() -> Int
 }
 
 class StorybookViewController: UIViewController {
     
-    var page = 7
+    var page = 1
     var bookId = "37bff686-7d09-4e53-aa90-fb465da131b5"
 
     weak var delegate: StorybookViewControllerDelegate?
@@ -29,6 +29,7 @@ class StorybookViewController: UIViewController {
     private var images: [ObjectImage] = []
     private var imageScan: [ObjectImage] = []
     private var backgroundImage: [Background] = []
+    private var scanImage: StoryScan!
     private var bookDetail: Book!
     private var isScan = false
     
@@ -51,15 +52,16 @@ class StorybookViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // SETUP VIEW MODEL
         setupViewModel()
         
+        
+
         loadPage()
         
-        // ADD TAP GESTURE
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeBackgroundImage))
-        view.addGestureRecognizer(tapGesture)
+        // LOAD STORY TEXT BEFORE SCAN
+        createStoryTextLabel(data: stories[0])        
     }
     
     private func loadPage(){
@@ -70,12 +72,8 @@ class StorybookViewController: UIViewController {
         
         // LOAD IMAGE AFTER SCAN
         
-        // Load story text
-//        storyTextBeforeScan(text: stories[0].text)
-        
         // SCAN FLASH CARD
         setupScanView()
-
     }
     
     private func setupViewModel() {
@@ -102,6 +100,7 @@ class StorybookViewController: UIViewController {
         images = viewModel.loadImage()
         imageScan = viewModel.loadScanableImage()
         backgroundImage = viewModel.loadBackgroundImages()
+        scanImage = viewModel.getScanCardForByPage()
     }
     
     private func loadImageAfterScan() {
@@ -130,6 +129,22 @@ class StorybookViewController: UIViewController {
                 label.heightAnchor.constraint(equalToConstant: 50)
             ])
         }
+                
+        self.background.removeFromSuperview()
+//        self.storyLabel.removeFromSuperview()
+        
+        let newBackground = BackgroundViewComponent(image: UIImage(named: backgroundImage[1].image)!, frame: view.bounds)
+        
+        view.addSubview(newBackground)
+        
+        if page < bookDetail.totalPage {
+            setupNextPageButton()
+        }
+        
+        loadImage()
+        
+//        self.addStoryText(text: stories[1].text)
+
     }
     
     private func loadImage() {
@@ -176,12 +191,29 @@ class StorybookViewController: UIViewController {
 
 // HELPER
 extension StorybookViewController {
+    private func popupAnimation(image: UIImageView) {
+        UIView.animate(withDuration: 0.9,
+                       delay: 0,
+                       usingSpringWithDamping: 0.9,
+                       initialSpringVelocity: 0.9,
+                       options: [.autoreverse, .repeat],
+                       animations: {
+            image.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        }, completion: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            image.layer.removeAllAnimations()
+            image.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+
+    }
+    
     private func createImage(imageName: String) -> UIImageView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: imageName)
         imageView.isUserInteractionEnabled = true
         imageView.contentMode = .scaleAspectFill
-        
+        popupAnimation(image: imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
@@ -202,20 +234,22 @@ extension StorybookViewController {
         return label
     }
     
-    private func createStoryTextLabel(text: String) {
+    private func createStoryTextLabel(data: Story) {
         storyLabel = UILabel()
-        storyLabel.text = text
+        storyLabel.text = data.text
         storyLabel.translatesAutoresizingMaskIntoConstraints = false
         storyLabel.numberOfLines = 0
-        storyLabel.font = UIFont.systemFont(ofSize: 28)
+        storyLabel.font = UIFont.systemFont(ofSize: 24)
         storyLabel.textColor = .black
+        storyLabel.textAlignment = .left
+        storyLabel.adjustsFontSizeToFitWidth = true
         
         view.addSubview(storyLabel)
 
         NSLayoutConstraint.activate([
-            storyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: stories[page].padding.top),
-            storyLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: stories[page].padding.left),
-            storyLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: stories[page].padding.right)
+            storyLabel.widthAnchor.constraint(equalToConstant: data.size.width),
+            storyLabel.heightAnchor.constraint(equalToConstant: data.size.height),
+            storyLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: data.padding.left),            storyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: data.padding.top),
         ])
     }
     
@@ -234,7 +268,7 @@ extension StorybookViewController {
 // HELPER ACTION SELECTOR GESTURE
 extension StorybookViewController {
     @objc
-    private func changeBackgroundImage() {
+    func changeBackgroundImage() {
         self.background.removeFromSuperview()
 //        self.storyLabel.removeFromSuperview()
         
@@ -256,9 +290,10 @@ extension StorybookViewController {
         if let parent = self.presentingViewController as? BookViewController {
 //             // Memicu method nextPage di BookViewController
             
-            delegate?.didRequestNextPage()
-            dismiss(animated: true, completion: nil)
-            parent.nextPage()
+            if ((delegate?.didRequestNextPage()) != nil) {
+                dismiss(animated: true, completion: nil)
+                parent.nextPage()
+            }
         }
     }
 
@@ -336,21 +371,15 @@ extension StorybookViewController {
 // HELPER FOR SCAN OVERLAY VIEW
 extension StorybookViewController: ScanningDelegate {
     func setupScanView() {
-        if let currentPageNumber: Int = delegate?.didRequestCurrentPageNumber() {
-            let prompt = viewModel.getScanCardForByPage(bookId: bookId, page: currentPageNumber)
-            scanningView = ScanningViewController(promptText: prompt.scanCard)
-            scanningView?.delegate = self
-            view.addSubview(scanningView?.view ?? UIView())
-        }
+        scanningView = ScanningViewController(promptText: scanImage.scanCard)
+        scanningView?.delegate = self
+        view.addSubview(scanningView?.view ?? UIView())
     }
     
     func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String) {
-        if let currentPageNumber: Int = delegate?.didRequestCurrentPageNumber() {
-            let prompt = viewModel.getScanCardForByPage(bookId: bookId, page: currentPageNumber)
-            if prompt.scanCard == identifier {
-                removeScanningView()
-                setupRepeatView(cardImageName: prompt.scanCard)
-            }
+        if scanImage.scanCard == identifier {
+            removeScanningView()
+            setupRepeatView(cardImageName: scanImage.scanCard)
         }
     }
     

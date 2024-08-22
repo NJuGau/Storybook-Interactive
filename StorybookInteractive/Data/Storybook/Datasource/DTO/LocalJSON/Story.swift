@@ -12,4 +12,5 @@ struct Story: Codable {
     let page: Int
     let text: String
     let padding: Padding
+    let size: Size
 }
