@@ -39,18 +39,32 @@ class BookViewController: UIViewController {
         // Present the storybook view controller
         self.present(storybookViewController, animated: true, completion: nil)
     }
+    
+    func presentEndScreen(completion: (() -> Void)? = nil) {
+        let endViewController = TheEndScreenViewController()
+        endViewController.modalPresentationStyle = .fullScreen
+        
+        self.present(endViewController, animated: true, completion: completion)
+    }
 
     @objc 
     func nextPage() {
         currentPage += 1
         presentStorybookPage(page: currentPage)
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeRight
+    }
 }
 
 
 extension BookViewController: StorybookViewControllerDelegate {
-    func didRequestNextPage() -> Bool {
-        true
+    func didRequestNextPage(totalPage: Int) -> Bool {
+        if currentPage == totalPage {
+            return false
+        }
+        return true
     }
     
     func didRequestCurrentPageNumber() -> Int {

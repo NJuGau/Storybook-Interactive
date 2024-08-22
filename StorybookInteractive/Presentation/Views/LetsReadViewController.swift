@@ -10,6 +10,8 @@ import UIKit
 
 class LetsReadViewController: UIViewController {
     
+    private var nextButton: UIButton?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -33,6 +35,20 @@ class LetsReadViewController: UIViewController {
         ])
         
         setupNextPageButton()
+        
+        let vignetteView = createVignetteView()
+        view.addSubview(vignetteView)
+            
+        NSLayoutConstraint.activate([
+                vignetteView.topAnchor.constraint(equalTo: view.topAnchor),
+                vignetteView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                vignetteView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                vignetteView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        if let button = nextButton {
+            view.bringSubviewToFront(button)
+        }
     }
     
     private let bookTitle: UIImageView = {
@@ -60,7 +76,7 @@ class LetsReadViewController: UIViewController {
     private func setupNextPageButton() {
         let buttonNextPage = NextButtonComponent()
         buttonNextPage.addTarget(self, action: #selector(gotostorybook), for: .touchUpInside)
-        
+        nextButton = buttonNextPage
         view.addSubview(buttonNextPage)
         
         NSLayoutConstraint.activate([
@@ -69,11 +85,40 @@ class LetsReadViewController: UIViewController {
         ])
     }
     
+    private func createVignetteView() -> UIView {
+        let vignetteView = UIView(frame: self.view.bounds)
+        vignetteView.translatesAutoresizingMaskIntoConstraints = false
+        vignetteView.isUserInteractionEnabled = false
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = vignetteView.bounds
+        
+        gradientLayer.colors = [
+            UIColor.black.withAlphaComponent(0.7).cgColor,
+            UIColor.clear.cgColor,
+            UIColor.clear.cgColor,
+            UIColor.black.withAlphaComponent(0.7).cgColor
+        ]
+        
+        gradientLayer.locations = [0.0, 0.2, 0.8, 1.0]
+        
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        
+        vignetteView.layer.addSublayer(gradientLayer)
+        
+        return vignetteView
+    }
+    
     @objc
     private func gotostorybook() {
         let bookController = BookViewController()
         bookController.modalPresentationStyle = .fullScreen
         self.present(bookController, animated: true, completion: nil)
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeRight
     }
     
 }

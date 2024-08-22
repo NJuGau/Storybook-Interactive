@@ -21,16 +21,7 @@ class ButtonComponent: UIButton {
             homeButton.clipsToBounds = true
             
             return homeButton
-            
-        
         }()
-    
-    
-    @objc func buttonTapped() {
-            print("Circle button tapped!")
-        }
-
-    
 }
 
 extension UIImage {
