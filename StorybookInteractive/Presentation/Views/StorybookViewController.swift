@@ -134,10 +134,10 @@ class StorybookViewController: UIViewController, SoundDelegate {
         gradientLayer.frame = vignetteView.bounds
         
         gradientLayer.colors = [
-            UIColor.black.withAlphaComponent(0.7).cgColor,
+            UIColor.black.withAlphaComponent(0.6).cgColor,
             UIColor.clear.cgColor,
             UIColor.clear.cgColor,
-            UIColor.black.withAlphaComponent(0.7).cgColor
+            UIColor.black.withAlphaComponent(0.6).cgColor
         ]
         
         gradientLayer.locations = [0.0, 0.2, 0.8, 1.0]
@@ -402,10 +402,27 @@ extension StorybookViewController {
         storyLabel.text = data.text
         storyLabel.translatesAutoresizingMaskIntoConstraints = false
         storyLabel.numberOfLines = 0
-        storyLabel.font = UIFont.systemFont(ofSize: 24)
-        storyLabel.textColor = .black
+        
+        guard let customFont = UIFont(name: "Nunito-Bold", size: 22) else {
+            fatalError("""
+                Failed to load the "Nunito-Bold" font.
+                Make sure the font file is included in the project and the font name is spelled correctly.
+                """
+            )
+        }
+        storyLabel.font = customFont
+        
+        storyLabel.textColor = .white
         storyLabel.textAlignment = .left
         storyLabel.adjustsFontSizeToFitWidth = true
+        
+        storyLabel.layer.shadowColor = UIColor.black.cgColor
+        storyLabel.layer.shadowOffset = CGSize(width: 0, height: 1)
+        storyLabel.layer.shadowOpacity = 0.8
+        storyLabel.layer.shadowRadius = 4
+
+        storyLabel.layer.shouldRasterize = true
+        storyLabel.layer.rasterizationScale = UIScreen.main.scale
         
         view.addSubview(storyLabel)
         
