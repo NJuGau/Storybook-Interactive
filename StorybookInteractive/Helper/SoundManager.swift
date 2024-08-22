@@ -62,7 +62,7 @@ class SoundManager: NSObject, AVAudioPlayerDelegate {
             do {
                 dialogueSoundPlayer = try AVAudioPlayer(data: soundAsset.data)
                 
-                dialogueSoundPlayer?.numberOfLoops = 1
+                dialogueSoundPlayer?.numberOfLoops = 0
                 dialogueSoundPlayer?.volume = dialogueVolume
                 dialogueSoundPlayer?.delegate = self
             } catch {

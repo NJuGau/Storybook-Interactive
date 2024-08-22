@@ -14,6 +14,7 @@ enum ScanState {
 
 protocol ScanningDelegate {
     func didScanCompleteDelegate(_ controller: ScanningViewController, didCaptureResult identifier: String)
+    func setAndPlayScanGuidanceSound()
 }
 
 class ScanningViewController: UIViewController {
@@ -115,6 +116,7 @@ class ScanningViewController: UIViewController {
             
             setupModel()
             setupConstraintInitial()
+            delegate?.setAndPlayScanGuidanceSound()
         case .scan:
             dummyButton.isHidden = true
             view.addSubview(cameraView)

@@ -21,7 +21,7 @@ internal final class StoryScanUsecase: StoryScanUsecaseProtocol {
     func fetchScanCardByBookIdAndPage(req: StoryScanRequest) -> (StoryScan, ErrorHandler?) {
         let (scanCards, errorHandler) = storyScanRepository.fetchScanCardByBookIdAndPage(req: req)
         
-        let scanResult = scanCards.first ?? StoryScan(id: "", bookId: "", page: -1, scanCard: "")
+        let scanResult = scanCards.first ?? StoryScan(id: "", bookId: "", page: -1, scanCard: "", scanGuidanceSound: "", wordTruncationSound: "")
         
         return (scanResult, errorHandler)
     }
