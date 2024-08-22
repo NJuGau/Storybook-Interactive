@@ -200,12 +200,29 @@ class StorybookViewController: UIViewController {
 
 // HELPER
 extension StorybookViewController {
+    private func popupAnimation(image: UIImageView) {
+        UIView.animate(withDuration: 0.9,
+                       delay: 0,
+                       usingSpringWithDamping: 0.9,
+                       initialSpringVelocity: 0.9,
+                       options: [.autoreverse, .repeat],
+                       animations: {
+            image.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        }, completion: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            image.layer.removeAllAnimations()
+            image.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+
+    }
+    
     private func createImage(imageName: String) -> UIImageView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: imageName)
         imageView.isUserInteractionEnabled = true
         imageView.contentMode = .scaleAspectFill
-        
+        popupAnimation(image: imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
