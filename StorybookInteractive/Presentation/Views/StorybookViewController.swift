@@ -25,6 +25,7 @@ class StorybookViewController: UIViewController, SoundDelegate {
 
     weak var delegate: StorybookViewControllerDelegate?
 
+    private var isInteractable = false
     private var homeButton: UIButton?
     private var vignetteOverlay: UIView?
     private var nextButton: UIButton?
@@ -39,6 +40,7 @@ class StorybookViewController: UIViewController, SoundDelegate {
     private var storyScanCard: StoryScan?
     private var imageLabel: String?
     private var isScan = false
+    private var listInteractiveObject: [UIImageView] = []
     
     private var scanningView: ScanningViewController?
     private var repeatView: RepeatViewController?
@@ -316,7 +318,7 @@ class StorybookViewController: UIViewController, SoundDelegate {
                 setAndPlayDialogueSound(soundName: stories[1].voiceOverSound)
                 createStoryTextLabel(data: stories[1])
             case .interactiveObject:
-            setAndPlayDialogueSound(soundName: "Word Truncation - \(imageLabel ?? "")") // TODO: akses object yang di klik
+                setAndPlayDialogueSound(soundName: "Word Truncation - \(imageLabel ?? "")")
             case .idle:
                 return
             }
@@ -331,6 +333,12 @@ class StorybookViewController: UIViewController, SoundDelegate {
             case .cardResult:
                 soundStoryState = .idle
                 setAndPlayDialogueSound(soundName: storyScanCard!.wordTruncationSound)
+            case .continueStory:
+                for item in listInteractiveObject {
+                    popupAnimation(image: item)
+                }
+                isInteractable = true
+                soundStoryState = .idle
             default:
                 soundStoryState = .idle
         }
@@ -376,12 +384,13 @@ extension StorybookViewController {
         imageView.image = UIImage(named: imageName)
         imageView.isUserInteractionEnabled = true
         imageView.contentMode = .scaleAspectFill
-        popupAnimation(image: imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
             imageView.addGestureRecognizer(tapGesture)
-
+        
+        listInteractiveObject.append(imageView)
+        
         return imageView
     }
     
@@ -492,6 +501,7 @@ extension StorybookViewController {
     
     @objc 
     private func imageTapped(_ sender: UITapGestureRecognizer) {
+        guard isInteractable else { return }
         guard let tappedImageView = sender.view as? UIImageView else { return }
         
         if let label = tappedImageView.subviews.first(where: { $0 is UILabel }) as? UILabel {
