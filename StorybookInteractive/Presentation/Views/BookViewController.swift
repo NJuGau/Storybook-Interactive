@@ -28,7 +28,7 @@ class BookViewController: UIViewController {
         }
     }
 
-    private func presentStorybookPage(page: Int) {
+    func presentStorybookPage(page: Int) {
         let storybookViewController = StorybookViewController(bookId: bookId, page: currentPage)
         storybookViewController.delegate = self
         storybookViewController.page = page
