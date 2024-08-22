@@ -35,6 +35,7 @@ class BookViewController: UIViewController {
         storybookViewController.page = page
         storybookViewController.bookId = bookId
         storybookViewController.modalPresentationStyle = .fullScreen
+        storybookViewController.modalTransitionStyle = .crossDissolve
         
         // Present the storybook view controller
         self.present(storybookViewController, animated: true, completion: nil)
