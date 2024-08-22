@@ -57,11 +57,12 @@ class StorybookViewController: UIViewController {
         setupViewModel()
         
         
-
-        loadPage()
         
+        
+        loadPage()
+        home()
         // LOAD STORY TEXT BEFORE SCAN
-        createStoryTextLabel(data: stories[0])        
+//        createStoryTextLabel(data: stories[0])        
     }
     
     private func loadPage(){
@@ -73,7 +74,21 @@ class StorybookViewController: UIViewController {
         // LOAD IMAGE AFTER SCAN
         
         // SCAN FLASH CARD
-        setupScanView()
+//        setupScanView()
+    }
+    
+    private func home() {
+        let homeButton = ButtonComponent().homeButton
+    
+        view.addSubview(homeButton)
+        
+        NSLayoutConstraint.activate([
+            homeButton.widthAnchor.constraint(equalToConstant: 69),
+            homeButton.heightAnchor.constraint(equalToConstant: 69),
+            homeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 43),
+            homeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32),
+        ])
+
     }
     
     private func setupViewModel() {
