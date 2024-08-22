@@ -36,9 +36,21 @@ class ScanningViewController: UIViewController {
     }()
     
     private let dummyButton: UIButton = {
+        
         let button =  UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Mulai Cari", for: .normal)
+        
+        guard let customFont = UIFont(name: "Nunito-Bold", size: 16) else {
+            fatalError("""
+                Failed to load the "Nunito-Bold" font.
+                Make sure the font file is included in the project and the font name is spelled correctly.
+                """
+            )
+        }
+        
+        button.titleLabel?.font = customFont
+        
         button.tintColor = .white
         button.backgroundColor = UIColor(named: "DarkGreen600")
         
