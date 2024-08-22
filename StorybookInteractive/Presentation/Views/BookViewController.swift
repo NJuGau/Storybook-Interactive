@@ -12,6 +12,7 @@ class BookViewController: UIViewController {
     private var currentPage = 1
     private let bookId = "37bff686-7d09-4e53-aa90-fb465da131b5"
     private var didPresentPage = false
+    private var isNext = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +49,8 @@ class BookViewController: UIViewController {
 
 
 extension BookViewController: StorybookViewControllerDelegate {
-    func didRequestNextPage() {
-        nextPage()
+    func didRequestNextPage() -> Bool {
+        true
     }
     
     func didRequestCurrentPageNumber() -> Int {

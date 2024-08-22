@@ -119,6 +119,7 @@ class RepeatViewController: UIViewController {
         view.addSubview(backgroundTouchArea)
 //        view.addSubview(cardButton)
         view.addSubview(appraisalLabel)
+        view.addSubview(cardButton)
         view.addSubview(cardImage)
         view.addSubview(closeLabel)
         
@@ -126,8 +127,8 @@ class RepeatViewController: UIViewController {
         backgroundTouchArea.addGestureRecognizer(completeGesture)
         
         //TODO: Bugged click
-//        let repeatGesture = UITapGestureRecognizer(target: self, action: #selector(onCardPress(_:)))
-//        cardButton.addGestureRecognizer(repeatGesture)
+        let repeatGesture = UITapGestureRecognizer(target: self, action: #selector(onCardPress(_:)))
+        cardButton.addGestureRecognizer(repeatGesture)
         
         setupConstraint()
         animateCloseLabelBlinking()
@@ -146,7 +147,7 @@ class RepeatViewController: UIViewController {
     }
     
     @objc
-    private func onCardPress(_ sender: UIButton) {
+    private func onCardPress(_ sender: UITapGestureRecognizer) {
         delegate?.didPressCardDelegate(self)
     }
     

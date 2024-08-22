@@ -3,24 +3,32 @@
         "id": "8477d79b-386f-46a3-a9f6-20891de9ff91",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 1,
-        "text": "Di suatu pagi yang cerah, kicau burung terdengar riang di udara,",
+        "text": "Di suatu pagi yang cerah, kicau burung terdengar riang di udara.",
         "padding": {
-            "top": 600,
-            "bottom": 100,
-            "left": 100,
-            "right": 100
+            "top": 550,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
         }
     },
     {
         "id": "8477d79b-386f-46a3-a9f6-20891de9ff91",
         "bookId": "37bff686-7d09-4e53-aa90-fb465da131b5",
         "page": 1,
-        "text": "Di suatu pagi yang cerah, kicau burung terdengar riang di udara, hiduplah seorang anak bernama Jose. Setiap pagi Jose suka berjalan-jalan menyusuri danau.",
+        "text": "Hiduplah seorang anak bernama Jose. Setiap pagi Jose suka berjalan-jalan menyusuri danau.",
         "padding": {
-            "top": 600,
-            "bottom": 100,
-            "left": 100,
-            "right": 300
+            "top": 620,
+            "bottom": 0,
+            "left": 300,
+            "right": 0
+        },
+        "size": {
+            "width": 459,
+            "height": 56
         }
     }
 ]
