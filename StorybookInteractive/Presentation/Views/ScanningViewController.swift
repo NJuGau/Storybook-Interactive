@@ -241,7 +241,7 @@ extension ScanningViewController {
             }
             
             //check if it werent non-classified
-            if result.confidence > 0.99 && result.identifier != "NonClassified" {
+            if result.confidence > 0.90 && result.identifier != "NonClassified" {
                 print(result.identifier)
                 delegate?.didScanCompleteDelegate(self, didCaptureResult: result.identifier)
             }
