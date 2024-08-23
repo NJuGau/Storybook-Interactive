@@ -11,6 +11,7 @@ import UIKit
 class LetsReadViewController: UIViewController {
     
     private var nextButton: UIButton?
+    private var soundManager: SoundManager = SoundManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,8 @@ class LetsReadViewController: UIViewController {
             appLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -330)
             
         ])
+        
+        setAndPlayBackgroundSound(soundName: SoundPath.bgmHomePage)
         
         setupNextPageButton()
         
@@ -121,6 +124,18 @@ class LetsReadViewController: UIViewController {
         return .landscapeRight
     }
     
+    private func setAndPlayBackgroundSound(soundName: String){
+        soundManager.setupBackgroundSound(soundName: soundName)
+        soundManager.playBackgroundSound()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        soundManager.stopBackgroundSound()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setAndPlayBackgroundSound(soundName: SoundPath.bgmHomePage)
+    }
 }
 
 
