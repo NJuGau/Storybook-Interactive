@@ -301,6 +301,9 @@ class StorybookViewController: UIViewController, SoundDelegate {
         soundManager.playDialogueSound()
     }
     
+    var cardResultSoundCounter = 0
+    var cardResultSoundList: [String] = []
+    
     func checkSoundStoryState() {
         switch soundStoryState {
             case .openingStory:
@@ -309,16 +312,25 @@ class StorybookViewController: UIViewController, SoundDelegate {
             case .scanGuidance:
                 setAndPlayDialogueSound(soundName: storyScanCard!.scanGuidanceSound)
             case .cardResult:
+                cardResultSoundCounter = 0
+                cardResultSoundList = [
+                    SoundPath.guidanceMariKitaUcapkanBersama,
+                    storyScanCard!.wordTruncationSound,
+                    SoundPath.guidanceSekaliLagi,
+                    storyScanCard!.wordTruncationSound,
+                ]
                 setAndPlayDialogueSound(soundName: SoundPath.feedbackHebat)
             case .continueStory:
                 setAndPlayDialogueSound(soundName: stories[1].voiceOverSound)
                 createStoryTextLabel(data: stories[1])
             case .interactiveObject:
-                setAndPlayDialogueSound(soundName: "Word Truncation - \(imageLabel ?? "")")
+                setAndPlayDialogueSound(soundName: SoundPath.guidanceMariKitaUcapkanBersama)
             case .idle:
-                return
+                break
             }
     }
+    
+    var interactiveObjectIsOpened: Bool = false
     
     func audioDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         switch soundStoryState {
@@ -327,7 +339,10 @@ class StorybookViewController: UIViewController, SoundDelegate {
                 setupScanView()
                 soundStoryState = .idle
             case .cardResult:
-                setAndPlayDialogueSound(soundName: storyScanCard!.wordTruncationSound)
+                if cardResultSoundCounter < cardResultSoundList.count{
+                    setAndPlayDialogueSound(soundName: cardResultSoundList[cardResultSoundCounter])
+                }
+                cardResultSoundCounter += 1
             case .continueStory:
                 for item in listInteractiveObject {
                     popupAnimation(image: item)
@@ -336,6 +351,11 @@ class StorybookViewController: UIViewController, SoundDelegate {
                 soundStoryState = .idle
                 if page <= bookDetail.totalPage {
                     setupNextPageButton()
+                }
+            case .interactiveObject:
+                if !interactiveObjectIsOpened{
+                    setAndPlayDialogueSound(soundName: "Word Truncation - \(imageLabel ?? "")")
+                    interactiveObjectIsOpened = true
                 }
             default:
                 soundStoryState = .idle
@@ -490,11 +510,10 @@ extension StorybookViewController {
         if let label = tappedImageView.subviews.first(where: { $0 is UILabel }) as? UILabel {
             print("Label text: \(label.text ?? "No text")")
             imageLabel = label.text
-            soundStoryState = .interactiveObject
         }
         
         if !isImageScaled {
-            
+            soundStoryState = .interactiveObject
             if overlay == nil {
                 overlay = UIView()
                 overlay?.backgroundColor = UIColor.black
@@ -531,6 +550,8 @@ extension StorybookViewController {
 
             isImageScaled = true
         } else {
+            soundStoryState = .idle
+            interactiveObjectIsOpened = false
             // Reset image scaling
             UIView.animate(withDuration: 0.3, animations: {
                 tappedImageView.transform = .identity

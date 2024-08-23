@@ -9,6 +9,8 @@ import UIKit
 
 class TheEndScreenViewController: UIViewController {
 
+    private let soundManager: SoundManager = SoundManager.shared
+    
     private let endLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 518, y: 397, width: 159, height: 60))
         label.text = "Tamat"
@@ -36,10 +38,12 @@ class TheEndScreenViewController: UIViewController {
         view.addSubview(endLabel)
         
         setupConstraint()
+        setAndPlayBackgroundSound(soundName: SoundPath.bgmTheEndScene)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         animateLabelFadeIn()
+        setAndPlayBackgroundSound(soundName: SoundPath.bgmHomePage)
     }
     
     private func setupConstraint() {
@@ -59,4 +63,13 @@ class TheEndScreenViewController: UIViewController {
                 self.endLabel.alpha = 1.0
             }, completion: nil)
         }
+    
+    private func setAndPlayBackgroundSound(soundName: String){
+        soundManager.setupBackgroundSound(soundName: soundName)
+        soundManager.playBackgroundSound()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        soundManager.stopBackgroundSound()
+    }
 }
